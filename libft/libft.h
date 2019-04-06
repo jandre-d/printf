@@ -6,14 +6,16 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:01:59 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/01 15:36:45 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/06 12:32:57 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
-# define NEW(T) (T *)ft_memalloc(sizeof(T))
+# define TAKE(x, name) ((x*)ft_memalloc(sizeof(x)))
+# define TAKE_MULTI(x, times, name) ((x*)(ft_memalloc(sizeof(x) * times)))
+# define GIVE(x, name) ft_memdel((void **)&(x))
 # define ABS(x) ((x) < 0 ? -(x) : x)
 # define TRUE 1
 # define FALSE 0
