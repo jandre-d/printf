@@ -1,4 +1,4 @@
 
 all:
-	gcc main-moulitest-tests.c
+	gcc main.c
 	./a.out
