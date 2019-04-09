@@ -6,37 +6,45 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 18:03:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 18:13:20 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/09 18:45:54 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	convert_int_base_16(t_conversion_result *res, t_conversion_data *inp)
+static inline void set_res_str_len(t_conversion_data *inp, int *i, uint64_t *value)
 {
-	char					*character_set;
-	unsigned long long int	value;
-	int						i;
+	*i = 0;
+	*value = inp->int_value;
+	if (value == 0)
+		*i = 1;
+	else
+		while (*value > 0)
+		{
+			*value /= 16;
+			*i += 1;
+		}
+}
+
+t_bool	convert_int_base_16_uppercase(t_conversion_result *res, t_conversion_data *inp)
+{
+	char		*character_set;
+	uint64_t	value;
+	int			i;
 
 	character_set = "0123456789ABCDEF";
-	i = -1;
-	value = inp->int_value;
-	if (value == 0)
-		i = 0;
-	else
-		while (value > 0)
-		{
-			value /= 16;
-			i++;
-		}
-	value = inp->int_value;
-	res->str = TAKE_MULTI(char, i + 2, "ft_itoa_base");
+	set_res_str_len(inp, &i, &value);
+	res->len = i;
+	res->str = TAKE_MULTI(char, i + 1, "convert_int_base_16_uppercase");
 	if (res->str == NULL)
-		return ;
+		return (FALSE);
+	i--;
+	value = inp->int_value;
 	while (i >= 0)
 	{
 		res->str[i] = character_set[value % 16];
 		value /= 16;
 		i--;
 	}
+	return (TRUE);
 }

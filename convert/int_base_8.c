@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 16:31:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 18:42:08 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/09 18:46:41 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static inline void set_res_str_len(t_conversion_data *inp, int *i, uint64_t *val
 		}
 }
 
-void	convert_int_base_8(t_conversion_result *res, t_conversion_data *inp)
+t_bool	convert_int_base_8(t_conversion_result *res, t_conversion_data *inp)
 {
 	char		*character_set;
 	uint64_t	value;
@@ -34,9 +34,10 @@ void	convert_int_base_8(t_conversion_result *res, t_conversion_data *inp)
 
 	character_set = "01234567";
 	set_res_str_len(inp, &i, &value);
+	res->len = i;
 	res->str = TAKE_MULTI(char, i + 1, "convert_int_base_8");
 	if (res->str == NULL)
-		return ;
+		return (FALSE);
 	i--;
 	value = inp->int_value;
 	while (i >= 0)
@@ -45,4 +46,5 @@ void	convert_int_base_8(t_conversion_result *res, t_conversion_data *inp)
 		value /= 8;
 		i--;
 	}
+	return (TRUE);
 }
