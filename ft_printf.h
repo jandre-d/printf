@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 12:29:23 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 16:51:57 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/09 17:55:53 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 //https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html
 typedef uint8_t	t_bool;
 
-typedef struct	s_conversion_result
+typedef struct	s_conversion_output
 {
 	char	*str;
 	int		len;
 }				t_conversion_result;
 
-typedef struct	s_conversion_data
+typedef struct	s_conversion_input
 {
 	char	conversion_type;
 	t_bool	flag_h;
