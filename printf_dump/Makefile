@@ -1,4 +1,3 @@
 
 all:
-	gcc testmain.c ../libft/libft.a
-	./a.out
+	gcc testmain.c ../libft/libft.a -g
