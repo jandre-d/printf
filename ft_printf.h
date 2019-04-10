@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 12:29:23 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/10 13:31:29 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/10 15:51:43 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ typedef struct	s_conversion_input
 	t_bool	flag_plus;
 	t_bool	flag_32;
 	int		padding;
-	int		precision;
 	int64_t int_value;
-	long double		float_value;
-
+	int		precision;
+	double	double_float_value;
 }				t_conversion_input;
 
 #endif

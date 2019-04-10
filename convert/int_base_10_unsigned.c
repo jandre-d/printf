@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 18:49:44 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/10 13:25:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/10 16:04:55 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static inline void set_res_str_len(t_conversion_input *inp,
 t_bool	convert_int_base_10_unsigned(t_conversion_result *res,
 	t_conversion_input *inp)
 {
-	char		*character_set;
 	uint64_t	value;
 	int			i;
 

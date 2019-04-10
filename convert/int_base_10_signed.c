@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:53:17 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 20:40:23 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/10 19:05:19 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static inline void	set_value(t_conversion_result *res, int64_t *value, int *i)
 t_bool				convert_int_base_10_signed(t_conversion_result *res,
 	t_conversion_input *inp)
 {
-	char		*character_set;
 	int64_t		value;
 	int			i;
 
