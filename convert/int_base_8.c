@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 16:31:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 18:46:41 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/10 13:25:27 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static inline void set_res_str_len(t_conversion_data *inp, int *i, uint64_t *value)
+static inline void set_res_str_len(t_conversion_input *inp, int *i, uint64_t *value)
 {
 	*i = 0;
 	*value = inp->int_value;
@@ -26,7 +26,7 @@ static inline void set_res_str_len(t_conversion_data *inp, int *i, uint64_t *val
 		}
 }
 
-t_bool	convert_int_base_8(t_conversion_result *res, t_conversion_data *inp)
+t_bool	convert_int_base_8(t_conversion_result *res, t_conversion_input *inp)
 {
 	char		*character_set;
 	uint64_t	value;

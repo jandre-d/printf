@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 12:29:23 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 19:12:29 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/10 13:31:29 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct	s_conversion_input
 	int		padding;
 	int		precision;
 	int64_t int_value;
-	double		float_value;
+	long double		float_value;
 
 }				t_conversion_input;
 
