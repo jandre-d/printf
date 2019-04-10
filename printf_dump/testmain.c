@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:31:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/10 19:28:49 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/10 19:29:26 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int main()
 	// printf("printf	 %.2f\n", input.double_float_value);
 
 
-	printf("%g", __FLT_MIN__);
+	printf("%f", __FLT_MIN__);
 
 	__DBL_MAX__; //1.7976931348623157e+308
 	__DBL_MIN__; //2.2250738585072014e-308
