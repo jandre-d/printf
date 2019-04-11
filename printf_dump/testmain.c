@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:31:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/11 15:36:15 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/11 16:28:02 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,100 +14,60 @@
 #include "../ft_printf.h"
 #include <float.h>
 
-static inline int64_t round_f(double x)
+static inline void	set_res_str_len(t_conversion_input *inp,
+	int *i, int64_t *value)
 {
-	double y;
-
-	y = (int64_t)x;
-	x -= .5;
-	y += x > y;
-	return ((int64_t)y);
-}
-
-static inline int64_t	int_len(int64_t value)
-{
-	int64_t to_return;
-
-	to_return = 0;
-	if (value < 0)
-		to_return += 1;
+	*i = 0;
+	*value = inp->int_value;
+	if (*value < 0)
+		*i += 1;
 	if (value == 0)
-		to_return = 1;
+		*i = 1;
 	else
-		while (value != 0)
+		while (*value != 0)
 		{
-			value /= 10;
-			to_return += 1;
+			*value /= 10;
+			*i += 1;
 		}
-	return (to_return);
 }
 
-static inline int64_t round_f_overflow(int64_t *integer_part, double x)
+static inline void	set_value(t_conversion_result *res, int64_t *value, int *i)
 {
-	double y;
-	int32_t len_a;
-
-	y = (int64_t)x;
-	len_a = int_len(y);
-	x -= .5;
-	y += x > y;
-	if (len_a < int_len(y))
+	if (*value < 0)
 	{
-		*integer_part += 1;
-		y = 0;
-	}
-	return ((int64_t)y);
-}
-
-static inline int	n_pow_10(int n)
-{
-	if (n == 0)
-		return (1);
-	if (n == 1)
-		return (10);
-	return (10 * n_pow_10(n - 1));
-}
-
-t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
-{
-	int64_t	integer_part;
-	int64_t decimal_part;
-	int32_t	decimal_part_leading_zeros;
-	t_bool 	is_negative;
-
-	is_negative = 0;
-	if (inp->double_float_value < 0)
-	{
-		is_negative = 1;
-		inp->double_float_value = -inp->double_float_value;
-	}
-	if (inp->precision > 0)
-	{
-		integer_part = (int64_t)inp->double_float_value;
-		decimal_part = round_f_overflow(&integer_part,
-(inp->double_float_value - (double)integer_part) * n_pow_10(inp->precision));
-	}
-	else
-		integer_part = round_f(inp->double_float_value);
-	decimal_part_leading_zeros = inp->precision - int_len(decimal_part);
-
-	printf("result : ");
-
-	int i = 0;
-	if (is_negative)
-		printf("-");
-	if (inp->precision > 0)
-	{
-		printf("%lld.", integer_part);
-		while (i < decimal_part_leading_zeros)
+		if (*value < -9223372036854775807LL)
 		{
-			printf("0");
-			i++;
+			*value = 922337203685477580LL;
+			res->str[*i] = '8';
+			i--;
 		}
-		printf("%lld\n", decimal_part);
+		else
+			*value = -*value;
 	}
-	else
-		printf("%lld\n", integer_part);
+}
+
+t_bool				convert_int_base_10_signed(t_conversion_result *res,
+	t_conversion_input *inp)
+{
+	int64_t		value;
+	int			i;
+
+	set_res_str_len(inp, &i, &value);
+	res->len = i;
+	res->str = TAKE_MULTI(char, i + 1, "convert_int_base_10_signed");
+	if (res->str == NULL)
+		return (FALSE);
+	i--;
+	value = inp->int_value;
+	set_value(res, &value, &i);
+	while (i >= 0)
+	{
+		res->str[i] = value % 10 + '0';
+		value /= 10;
+		i--;
+	}
+	if (inp->int_value < 0)
+		res->str[i] = '-';
 	return (TRUE);
 }
 //1.999 @ 2
@@ -119,11 +79,13 @@ int main()
 	t_conversion_result res;
 	t_conversion_input	input;
 
+	input.int_value = 200;
 	input.double_float_value = -1.008;
 	input.precision = 2;
-	printf("inptut : %f\n", input.double_float_value);
-	convert_double(&res, &input);
-	printf("printf : %f\n", input.double_float_value);
+	// printf("inptut : %f\n", input.double_float_value);
+	// convert_double(&res, &input);
+	convert_int_base_10_signed(&res, &input);
+	printf("%s", res.str);
 
 
 	// printf("%f", __FLT_MIN__);
