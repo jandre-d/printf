@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:31:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/10 23:07:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/11 15:36:15 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../ft_printf.h"
 #include <float.h>
 
-static inline int64_t round_f(int64_t *integer_part, double x)
+static inline int64_t round_f(double x)
 {
 	double y;
 
@@ -24,30 +24,38 @@ static inline int64_t round_f(int64_t *integer_part, double x)
 	return ((int64_t)y);
 }
 
-static inline int	set_res_str_len(t_conversion_input *inp,
-	int *i, int64_t *value)
+static inline int64_t	int_len(int64_t value)
 {
-	*i = 0;
-	*value = inp->int_value;
-	if (*value < 0)
-		*i += 1;
+	int64_t to_return;
+
+	to_return = 0;
+	if (value < 0)
+		to_return += 1;
 	if (value == 0)
-		*i = 1;
+		to_return = 1;
 	else
-		while (*value != 0)
+		while (value != 0)
 		{
-			*value /= 10;
-			*i += 1;
+			value /= 10;
+			to_return += 1;
 		}
+	return (to_return);
 }
 
 static inline int64_t round_f_overflow(int64_t *integer_part, double x)
 {
 	double y;
+	int32_t len_a;
 
 	y = (int64_t)x;
+	len_a = int_len(y);
 	x -= .5;
 	y += x > y;
+	if (len_a < int_len(y))
+	{
+		*integer_part += 1;
+		y = 0;
+	}
 	return ((int64_t)y);
 }
 
@@ -64,39 +72,42 @@ t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
 {
 	int64_t	integer_part;
 	int64_t decimal_part;
-	int		leading_zeros_in_decimal_part;
+	int32_t	decimal_part_leading_zeros;
 	t_bool 	is_negative;
 
-	leading_zeros_in_decimal_part = 0;
+	is_negative = 0;
 	if (inp->double_float_value < 0)
 	{
 		is_negative = 1;
 		inp->double_float_value = -inp->double_float_value;
 	}
-	printf("inptut : %f\n", inp->double_float_value);
-
 	if (inp->precision > 0)
 	{
 		integer_part = (int64_t)inp->double_float_value;
-		decimal_part = round_f_overflow(&integer_part, (inp->double_float_value - (double)integer_part) * n_pow_10(inp->precision));
+		decimal_part = round_f_overflow(&integer_part,
+(inp->double_float_value - (double)integer_part) * n_pow_10(inp->precision));
 	}
 	else
-		integer_part = round_f(NULL, inp->double_float_value);
+		integer_part = round_f(inp->double_float_value);
+	decimal_part_leading_zeros = inp->precision - int_len(decimal_part);
 
+	printf("result : ");
+
+	int i = 0;
 	if (is_negative)
+		printf("-");
+	if (inp->precision > 0)
 	{
-		if (inp->precision > 0)
-			printf("result : -%lld.%lld\n", integer_part, decimal_part);
-		else
-			printf("result : -%lld\n", integer_part);
+		printf("%lld.", integer_part);
+		while (i < decimal_part_leading_zeros)
+		{
+			printf("0");
+			i++;
+		}
+		printf("%lld\n", decimal_part);
 	}
 	else
-	{
-		if (inp->precision > 0)
-			printf("result : %lld.%lld\n", integer_part, decimal_part);
-		else
-			printf("result : %lld\n", integer_part);
-	}
+		printf("%lld\n", integer_part);
 	return (TRUE);
 }
 //1.999 @ 2
@@ -105,20 +116,21 @@ t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
 //0.008 @ 2
 int main()
 {
-	// t_conversion_result res;
-	// t_conversion_input	input;
+	t_conversion_result res;
+	t_conversion_input	input;
 
-	// input.double_float_value = 0.008;
-	// input.precision = 2;
-	// convert_double(&res, &input);
-	// printf("printf	 %.2f\n", input.double_float_value);
+	input.double_float_value = -1.008;
+	input.precision = 2;
+	printf("inptut : %f\n", input.double_float_value);
+	convert_double(&res, &input);
+	printf("printf : %f\n", input.double_float_value);
 
 
-	printf("%f", __FLT_MIN__);
+	// printf("%f", __FLT_MIN__);
 
-	__DBL_MAX__; //1.7976931348623157e+308
-	__DBL_MIN__; //2.2250738585072014e-308
-	__LDBL_MAX__; //1.18973149535723176502e+4932L
-	__INT64_MAX__; //9223372036854775807LL
+	// __DBL_MAX__; //1.7976931348623157e+308
+	// __DBL_MIN__; //2.2250738585072014e-308
+	// __LDBL_MAX__; //1.18973149535723176502e+4932L
+	// __INT64_MAX__; //9223372036854775807LL
 	return (0);
 }
