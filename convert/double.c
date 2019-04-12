@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 14:50:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/11 22:13:15 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/12 13:43:46 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static inline int64_t	int_len(int64_t value)
 	if (value < 0)
 		to_return += 1;
 	if (value == 0)
-		to_return = 1;
+		to_return += 1;
 	else
 		while (value != 0)
 		{
