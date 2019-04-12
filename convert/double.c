@@ -6,20 +6,20 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 14:50:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/11 16:07:12 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/11 22:13:15 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "ft_printf.h"
-static inline int64_t round_f(double x)
+static inline int64_t round_int_part(double x)
 {
-	double y;
+	double value;
 
-	y = (int64_t)x;
+	value = (int64_t)x;
 	x -= .5;
-	y += x > y;
-	return ((int64_t)y);
+	value += x > value;
+	return ((int64_t)value);
 }
 
 static inline int64_t	int_len(int64_t value)
@@ -40,15 +40,15 @@ static inline int64_t	int_len(int64_t value)
 	return (to_return);
 }
 
-static inline int64_t round_f_overflow(int64_t *integer_part, double x)
+static inline int64_t round_decimal_part(int64_t *integer_part, double value)
 {
 	double y;
 	int32_t len_a;
 
-	y = (int64_t)x;
+	y = (int64_t)value;
 	len_a = int_len(y);
-	x -= .5;
-	y += x > y;
+	value -= .5;
+	y += value > y;
 	if (len_a < int_len(y))
 	{
 		*integer_part += 1;
@@ -69,9 +69,10 @@ static inline int	n_pow_10(int n)
 t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
 {
 	int64_t	integer_part;
-	int64_t decimal_part;
+	int64_t	decimal_part;
 	int32_t	decimal_part_leading_zeros;
-	t_bool 	is_negative;
+	t_bool	is_negative;
+	int32_t i;
 
 	is_negative = 0;
 	if (inp->double_float_value < 0)
@@ -82,12 +83,42 @@ t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
 	if (inp->precision > 0)
 	{
 		integer_part = (int64_t)inp->double_float_value;
-		decimal_part = round_f_overflow(&integer_part,
-(inp->double_float_value - (double)integer_part) * n_pow_10(inp->precision));
+		decimal_part = round_decimal_part(&integer_part, (inp->double_float_value - (double)integer_part) * n_pow_10(inp->precision));
+		res->len = int_len(integer_part) + (inp->precision - int_len(decimal_part)) + is_negative;
 	}
 	else
-		integer_part = round_f(inp->double_float_value);
+	{
+		integer_part = round_int_part(inp->double_float_value);
+		res->len = int_len(integer_part) + is_negative;
+	}
 	decimal_part_leading_zeros = inp->precision - int_len(decimal_part);
+
+	res->str = TAKE_MULTI(char, res->len, "convert_double");
+	i = res->len;
+
+	while (decimal_part > 0)
+	{
+		res->str[i] = decimal_part % 10 + '0';
+		decimal_part /= 10;
+		i--;
+		if (decimal_part_leading_zeros == 0 && decimal_part == 0)
+		{
+			res->str[i] = '.';
+			i--;
+		}
+	}
+	while (decimal_part_leading_zeros > 0)
+	{
+		decimal_part_leading_zeros =- 1;
+		res->str[i] = '0';
+		i--;
+		if (decimal_part_leading_zeros == 0)
+		{
+			res->str[i] = '.';
+			i--;
+		}
+	}
+
 
 	printf("result : ");
 
