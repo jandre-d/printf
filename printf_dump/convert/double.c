@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 14:50:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/12 13:43:46 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/13 21:35:48 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,3 +139,124 @@ t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
 		printf("%lld\n", integer_part);
 	return (TRUE);
 }
+
+// static inline int64_t round_int_part(double x)
+// {
+// 	double value;
+
+// 	value = (int64_t)x;
+// 	x -= .5;
+// 	value += x > value;
+// 	return ((int64_t)value);
+// }
+
+// static inline int64_t	int_len(int64_t value) //done
+// {
+// 	int64_t to_return;
+
+// 	to_return = 0;
+// 	if (value < 0)
+// 		to_return += 1;
+// 	if (value == 0)
+// 		to_return += 1;
+// 	else
+// 		while (value != 0)
+// 		{
+// 			value /= 10;
+// 			to_return += 1;
+// 		}
+// 	return (to_return);
+// }
+
+// static inline int64_t round_decimal_part(int64_t *integer_part, double value, int32_t *leading_zeros, int32_t precision)
+// {
+// 	double y;
+// 	int32_t len_a;
+
+// 	y = (int64_t)value;
+// 	len_a = int_len(y);
+// 	value -= .5;
+// 	y += value > y;
+// 	if (len_a < int_len(y))
+// 	{
+// 		*integer_part += 1;
+// 		y = 0;
+// 		*leading_zeros = precision;
+// 	}
+// 	else
+// 		*leading_zeros = precision - int_len((int64_t)y);
+// 	return ((int64_t)y);
+// }
+
+// static inline int	n_pow_10(int n) //done
+// {
+// 	if (n == 0)
+// 		return (1);
+// 	if (n == 1)
+// 		return (10);
+// 	return (10 * n_pow_10(n - 1));
+// }
+
+// t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
+// {
+// 	int64_t	integer_part;
+// 	int64_t	decimal_part;
+// 	int32_t	decimal_part_leading_zeros;
+// 	t_bool	is_negative;
+// 	int32_t i;
+
+// 	integer_part = 0;
+// 	decimal_part = 0;
+// 	decimal_part_leading_zeros = 0;
+// 	is_negative = FALSE;
+// 	i = 0;
+// 	if (inp->double_float_value < 0)
+// 	{
+// 		is_negative = 1;
+// 		inp->double_float_value = -inp->double_float_value;
+// 	}
+// 	if (inp->precision > 0)
+// 	{
+// 		integer_part = (int64_t)inp->double_float_value;
+// 		decimal_part = round_decimal_part(&integer_part, (inp->double_float_value - (double)integer_part) * n_pow_10(inp->precision),
+// 			&decimal_part_leading_zeros, inp->precision);
+// 		res->len = int_len(integer_part) + 1 + inp->precision + is_negative;
+// 	}
+// 	else
+// 	{
+// 		integer_part = round_int_part(inp->double_float_value);
+// 		res->len = int_len(integer_part) + is_negative;
+// 	}
+// 	res->str = TAKE_MULTI(char, res->len + 1, "convert_double");
+// 	i = res->len;
+// 	i--;
+// 	while (decimal_part > 0)
+// 	{
+// 		res->str[i] = decimal_part % 10 + '0';
+// 		decimal_part /= 10;
+// 		i--;
+// 		if (decimal_part_leading_zeros == 0 && decimal_part == 0)
+// 		{
+// 			res->str[i] = '.';
+// 			i--;
+// 		}
+// 	}
+// 	while (decimal_part_leading_zeros > 0)
+// 	{
+// 		res->str[i] = '0';
+// 		decimal_part_leading_zeros--;
+// 		i--;
+// 		if (decimal_part_leading_zeros == 0)
+// 		{
+// 			res->str[i] = '.';
+// 			i--;
+// 		}
+// 	}
+// 	while (i >= 0)
+// 	{
+// 		res->str[i] = integer_part % 10 + '0';
+// 		integer_part /= 10;
+// 		i--;
+// 	}
+// 	return (TRUE);
+// }

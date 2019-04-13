@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pt_uintlen.c                                       :+:    :+:            */
+/*   pf_10_power_n.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/12 14:09:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/12 14:09:43 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/13 15:15:49 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/13 18:12:25 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpf.h"
 
-int8_t	pf_intlen(uint64_t value, uint8_t base)
+int64_t pf_10_power_n(int32_t n)
 {
-	int8_t to_return;
-
-	to_return = 0;
-	if (value < 0)
-	{
-		to_return += 1;
-	}
-	if (value == 0)
-	{
-		to_return += 1;
-	}
-	else
-		while (value != 0)
-		{
-			value /= base;
-			to_return += 1;
-		}
-	return (to_return);
+	if (n == 0)
+		return (1);
+	if (n == 1)
+		return (10);
+	return (10 * pf_10_power_n(n - 1));
 }
