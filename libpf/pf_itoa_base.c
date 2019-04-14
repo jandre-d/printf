@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:42:11 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/13 21:44:48 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/14 18:37:05 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static inline void	max_negative_value_case(int64_t *value, int8_t *i, char *str)
 	}
 }
 
-char			*pf_itoa_base(int64_t value, int8_t base, t_bool lowercase)
+char			*pf_itoa_base(int64_t value, int8_t base, bool lowercase)
 {
 	char	*to_return;
 	char	*character_set;
 	int8_t	i;
-	t_bool	is_negative;
+	bool	is_negative;
 
 	if (base < 2 || base > 16)
 		return (NULL);

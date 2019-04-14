@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   pt_uitoa.c                                         :+:    :+:            */
+/*   pf_uitoa_base.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 14:09:36 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/13 14:22:46 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/14 18:36:34 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpf.h"
 
-char			*pf_uitoa_base(uint64_t value, int8_t base, t_bool lowercase)
+char			*pf_uitoa_base(uint64_t value, int8_t base, bool lowercase)
 {
 	char	*to_return;
 	char	*character_set;

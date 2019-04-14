@@ -6,14 +6,12 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 10:48:28 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/06 13:10:24 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/14 18:37:30 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stdint.h"
 #include "libft/libft.h"
-
-typedef uint8_t	t_bool;
 
 static int32_t	number_strlen(const char *str)
 {
@@ -53,7 +51,7 @@ static int32_t	denary_value(const char c, int32_t char_base)
 int32_t			ft_atoi_base(const char *str, int32_t str_base)
 {
 	int32_t	to_return;
-	t_bool	negative;
+	bool	negative;
 	int32_t	power;
 	int32_t	add;
 	int32_t	i;

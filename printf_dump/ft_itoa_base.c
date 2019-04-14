@@ -6,14 +6,12 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 10:46:48 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/09 16:03:32 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/14 18:37:39 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stdint.h"
 #include "ft_printf.h"
-
-typedef uint8_t	t_bool;
 
 static int32_t	len(int32_t value, int32_t base)
 {
@@ -36,7 +34,7 @@ char			*ft_itoa_base(int32_t value, int32_t base)
 	char	*character_set;
 	int32_t	copy;
 	int32_t	i;
-	t_bool	is_negative;
+	bool	is_negative;
 
 	if (base < 2 || base > 16)
 		return (NULL);

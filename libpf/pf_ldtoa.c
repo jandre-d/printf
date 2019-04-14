@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/13 21:35:05 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/14 18:38:05 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char					*pf_ldtoa(long double nbr, int32_t precision)
 	t_ldbltoa vars;
 
 	ft_memset((void *)&vars, 0, sizeof(t_ldbltoa));
-	vars.is_negative = nbr < 0 ? TRUE : FALSE;
+	vars.is_negative = nbr < 0 ? true : false;
 	nbr = nbr < 0 ? -nbr : nbr;
 	if (precision > 0)
 	{
