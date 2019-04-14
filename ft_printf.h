@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 12:29:23 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/11 16:10:59 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/14 14:19:55 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define FT_PRINTF_H
 # include "libft/libft.h"
 # include <stdint.h>
+# include <stdbool.h>
+# include <unistd.h>
+# include <stdarg.h>
 //https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html
 typedef uint8_t	t_bool;
 
@@ -26,16 +29,16 @@ typedef struct	s_conversion_output
 typedef struct	s_conversion_input
 {
 	char	conversion_type;
-	t_bool	flag_h;
-	t_bool	flag_hh;
-	t_bool	flag_l;
-	t_bool	flag_ll;
-	t_bool	flag_L;
-	t_bool	flag_hash;
-	t_bool	flag_0;
-	t_bool	flag_min;
-	t_bool	flag_plus;
-	t_bool	flag_32;
+	bool	flag_h;
+	bool	flag_hh;
+	bool	flag_l;
+	bool	flag_ll;
+	bool	flag_L;
+	bool	flag_hash;
+	bool	flag_0;
+	bool	flag_min;
+	bool	flag_plus;
+	bool	flag_32;
 	int		padding;
 	int64_t int_value;
 	int		precision;
