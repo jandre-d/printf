@@ -6,23 +6,26 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 12:29:23 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/16 14:09:03 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 11:00:22 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include "libft/libft.h"
+# include "libpf/libpf.h"
 # include <stdint.h>
 # include <unistd.h>
 # include <stdbool.h>
 # include <stdarg.h>
 //https://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/FUNCTIONS/format.html
 
-typedef struct	s_conversion_output
+typedef struct	s_conversion_result
 {
 	char	*str;
 	int		len;
+	bool	is_negative;
+	bool	has_decimal;
 }				t_conversion_result;
 
 typedef struct	s_output
@@ -50,7 +53,5 @@ typedef struct	s_conversion_input
 	int			precision;
 	long double	long_double_float_value;
 }				t_conversion_input;
-
-
 
 #endif
