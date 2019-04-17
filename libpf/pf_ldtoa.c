@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/14 18:38:05 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 19:01:25 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static inline int64_t	round_int_part(long double nbr)
 }
 
 static inline int64_t	round_decimal_part(double nbr, int32_t precision,
-	t_ldbltoa *vars)
+	t_ldbltoa_vars *vars)
 {
 	double	value;
 	int32_t	len_before;
@@ -50,7 +50,7 @@ static inline int64_t	round_decimal_part(double nbr, int32_t precision,
 	return ((int64_t)value);
 }
 
-static inline void		to_string(t_ldbltoa *vars)
+static inline void		to_string(t_ldbltoa_vars *vars)
 {
 	vars->len--;
 	while (vars->decimal_part > 0)
@@ -84,9 +84,9 @@ static inline void		to_string(t_ldbltoa *vars)
 
 char					*pf_ldtoa(long double nbr, int32_t precision)
 {
-	t_ldbltoa vars;
+	t_ldbltoa_vars vars;
 
-	ft_memset((void *)&vars, 0, sizeof(t_ldbltoa));
+	ft_memset((void *)&vars, 0, sizeof(t_ldbltoa_vars));
 	vars.is_negative = nbr < 0 ? true : false;
 	nbr = nbr < 0 ? -nbr : nbr;
 	if (precision > 0)

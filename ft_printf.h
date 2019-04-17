@@ -6,12 +6,14 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/06 12:29:23 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 18:42:59 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 20:14:28 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+//http://www.pixelbeat.org/programming/gcc/format_specs.html
 
 int	ft_printf(const char *str, ...);
 

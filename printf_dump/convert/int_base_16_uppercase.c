@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 18:03:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/10 13:26:09 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 20:31:04 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static inline void set_res_str_len(t_conversion_input *inp,
+static inline void set_res_str_len(t_conversion_in *inp,
 	int *i, uint64_t *value)
 {
 	*i = 0;
@@ -27,8 +27,8 @@ static inline void set_res_str_len(t_conversion_input *inp,
 		}
 }
 
-t_bool	convert_int_base_16_uppercase(t_conversion_result *res,
-	t_conversion_input *inp)
+t_bool	convert_int_base_16_uppercase(t_conversion_out *res,
+	t_conversion_in *inp)
 {
 	char		*character_set;
 	uint64_t	value;

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 14:50:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/13 21:35:48 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 20:31:04 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static inline int	n_pow_10(int n)
 	return (10 * n_pow_10(n - 1));
 }
 
-t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
+t_bool convert_double(t_conversion_out *res, t_conversion_in *inp)
 {
 	int64_t	integer_part;
 	int64_t	decimal_part;
@@ -197,7 +197,7 @@ t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
 // 	return (10 * n_pow_10(n - 1));
 // }
 
-// t_bool convert_double(t_conversion_result *res, t_conversion_input *inp)
+// t_bool convert_double(t_conversion_out *res, t_conversion_in *inp)
 // {
 // 	int64_t	integer_part;
 // 	int64_t	decimal_part;

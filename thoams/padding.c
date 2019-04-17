@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   padding.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: twoerdem <twoerdem@student.codam.nl>         +#+                     */
+/*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/10 17:22:47 by twoerdem       #+#    #+#                */
-/*   Updated: 2019/04/16 12:03:56 by twoerdem      ########   odam.nl         */
+/*   Updated: 2019/04/17 20:31:04 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	padding(t_conversion_result *res, t_conversion_input *inp)
+void	padding(t_conversion_out *res, t_conversion_in *inp)
 {
 	int		i;
 	char	*new;
@@ -80,11 +80,11 @@ int		main(void)
 	printf("'%-5X'\n", 15);
 	printf("'%05X'\n\n", 15);
 	
-	t_conversion_result	*res;
-	t_conversion_input	*inp;
+	t_conversion_out	*res;
+	t_conversion_in	*inp;
 
-	res = (t_conversion_result *)malloc(sizeof(t_conversion_result *));
-	inp = (t_conversion_input *)malloc(sizeof(t_conversion_input *));
+	res = (t_conversion_out *)malloc(sizeof(t_conversion_out *));
+	inp = (t_conversion_in *)malloc(sizeof(t_conversion_in *));
 	inp->padding = 50;
 	res->str = "HELLO";
 	res->len = ft_strlen(res->str);

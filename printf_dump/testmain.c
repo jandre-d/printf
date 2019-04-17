@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:31:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 18:20:31 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 20:31:04 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 //0.008 @ 2
 int main()
 {
-	t_conversion_result res;
-	t_conversion_input	input;
+	t_conversion_out res;
+	t_conversion_in	input;
 
 	t_output x;
 	x.str = ft_strnew(2);
