@@ -6,16 +6,41 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 13:52:44 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 18:33:42 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "read_instruction.h"
 
-static bool verify_flags(t_conversion_input *c_in)
-{
-	return (false);
-}
+// /*
+// ** delete ?
+// */
+// static void overwrite_flags(t_conversion_input *c_in)
+// {
+// 	char c_ty;
+
+// 	c_ty = c_in->conversion_type;
+// 	if (c_ty == 'c' || c_ty == 'd' || c_ty == 'i' || c_ty == 'n' ||
+// 	c_ty == 'p' || c_ty == 's' || c_ty == 'u')
+// 		c_in->flag_hash = false;
+// 	if (c_ty == 'n' || c_in->flag_min || (c_in->precision > 0 && (c_ty == 'd' ||
+// 	c_ty == 'i' || c_ty == 'o' || c_ty == 'u' || c_ty == 'i' || c_ty == 'x')))
+// 		c_in->flag_0 = false;
+// 	if (c_ty == 'n')
+// 		c_in->flag_min = false;
+// 	if (((c_ty == 'd' || c_ty == 'f') == false && c_in->flag_space) ||
+// 	c_in->flag_plus)
+// 		c_in->flag_space = false;
+// }
+
+// /*
+// ** delete ?
+// */
+// static bool verify_flags(t_conversion_input *c_in)
+// {
+// 	overwrite_flags(c_in);
+// 	return (true);
+// }
 
 /*
 ** b: boolean --- bonus ?
@@ -37,6 +62,9 @@ static inline bool set_conversion(char **str, t_conversion_input *c_in)
 		(**str == '%' && (c_in->conversion_type = '%')));
 }
 
+/*
+** ll hh
+*/
 static inline uint8_t set_flag_double_char(char **str, t_conversion_input *c_in)
 {
 	if (**str == 'l' && c_in->flag_l)
@@ -63,7 +91,7 @@ static inline uint8_t set_flag_double_char(char **str, t_conversion_input *c_in)
 }
 
 /*
-** # 0 - + space hh h l ll L
+** # 0 - + space h l L
 */
 static inline bool set_flag(char **str, t_conversion_input *c_in)
 {
@@ -92,13 +120,13 @@ bool read_instruction(char **str, t_conversion_input *c_in)
 	if (**str != '\0')
 		while (true)
 		{
-			*str++;
+			*str += 1;
 			if (**str == '\0')
 				return (false);
 			if (set_flag(str, c_in))
 				continue;
 			else if (set_conversion(str, c_in))
-				return (verify_flags(c_in));
+				return (true);
 			else
 				return (false);
 		}

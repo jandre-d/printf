@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:44:40 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 11:07:57 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 18:56:54 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "../libft/libft.h"
 # include <stdint.h>
 # include <stdbool.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 typedef struct	s_ldbltoa_vars
 {
@@ -26,14 +28,12 @@ typedef struct	s_ldbltoa_vars
 	char 	*to_return;
 }				t_ldbltoa;
 
-
 int8_t	pf_intlen(int64_t value, uint8_t base);
 char	*pf_itoa_base(int64_t value, int8_t base, bool lowercase);
 int8_t	pf_uintlen(uint64_t value, uint8_t base);
 char	*pf_uitoa_base(uint64_t value, int8_t base, bool lowercase);
 int64_t pf_10_power_n(int32_t n);
 char	*pf_ldtoa(long double nbr, int32_t precision);
-char	*pf_str_append(char *str, char *add);
 void	*pf_memmove(char *dst, char *src, size_t len);
 void	*pf_memcpy(char *dst, char *src, size_t n);
 
