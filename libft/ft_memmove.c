@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 11:05:50 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/01/16 12:18:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 10:59:52 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	if (src < dst)
 	{
 		len--;
-		while (TRUE)
+		while (1)
 		{
 			*((unsigned char *)dst + len) = *((unsigned char *)src + len);
 			if (len == 0)

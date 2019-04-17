@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:44:40 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/14 15:43:58 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 11:07:57 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ char	*pf_uitoa_base(uint64_t value, int8_t base, bool lowercase);
 int64_t pf_10_power_n(int32_t n);
 char	*pf_ldtoa(long double nbr, int32_t precision);
 char	*pf_str_append(char *str, char *add);
+void	*pf_memmove(char *dst, char *src, size_t len);
+void	*pf_memcpy(char *dst, char *src, size_t n);
 
 #endif
