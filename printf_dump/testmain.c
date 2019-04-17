@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:31:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 12:19:40 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 14:02:39 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ int main()
 	x.str[0] = 'x';
 	x.str[1] = 'v';
 	
-	printf("\" d\"");
 
-	// printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
+	printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
 
-	// append_left(&x, "hoiiii", 3, false);
+	append_left(&x, "hoiiii", 3, false);
 	
-	// printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
+	printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
 	
-	// append_right(&x, " ja", 3, false);
+	append_right(&x, " ja", 3, false);
 
-	// printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
+	printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
 	// int i = 0;
 	// while (i < 70)
 	// {

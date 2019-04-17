@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 12:42:32 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/17 13:52:44 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static bool verify_flags(t_conversion_input *c_in)
 {
 	return (false);
 }
+
 /*
+** b: boolean --- bonus ?
 ** csp diouxX f %%
 */
 static inline bool set_conversion(char **str, t_conversion_input *c_in)
@@ -34,7 +36,6 @@ static inline bool set_conversion(char **str, t_conversion_input *c_in)
 		(**str == 'f' && (c_in->conversion_type = 'f')) ||
 		(**str == '%' && (c_in->conversion_type = '%')));
 }
-
 
 static inline uint8_t set_flag_double_char(char **str, t_conversion_input *c_in)
 {
@@ -60,6 +61,7 @@ static inline uint8_t set_flag_double_char(char **str, t_conversion_input *c_in)
 	}
 	return (42);
 }
+
 /*
 ** # 0 - + space hh h l ll L
 */
@@ -82,7 +84,23 @@ static inline bool set_flag(char **str, t_conversion_input *c_in)
 		return (double_char_flag_result);
 }
 
+/*
+** the first character in str should be a '%'
+*/
 bool read_instruction(char **str, t_conversion_input *c_in)
 {
-	
+	if (**str != '\0')
+		while (true)
+		{
+			*str++;
+			if (**str == '\0')
+				return (false);
+			if (set_flag(str, c_in))
+				continue;
+			else if (set_conversion(str, c_in))
+				return (verify_flags(c_in));
+			else
+				return (false);
+		}
+	return (false);
 }
