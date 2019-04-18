@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 12:50:21 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 15:24:01 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,10 @@ int	ft_printf(const char *str, ...)
 int main()
 {
 	//ft_printf("%.24s%s %42sxxxx", "waaaat", "second", "where am i");
-	ft_printf("hello %c %d %i %o %% %s %u %x %X\n", 't', 42, 24, 9, "banaan", 10, 15, 15);
+	//ft_printf("hello %c %d %i %o %% %s %u %x %X\n", 't', 42, 24, 9, "banaan", 10, 15, 15);
+	double xx = 5.3;
+	int32_t len = 0;
+	//ft_printf("%f", xx);
+	printf("\"%s\"", pf_ldtoa(xx, 6, &len));
 	//printf("\"%+.7d\"\n", 42);
 }
