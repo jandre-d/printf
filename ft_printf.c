@@ -6,11 +6,11 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 16:07:51 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 16:24:43 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "conversions/conversions.h"
+#include "conversions.h"
 #include "ft_printf.h"
 #include "read_instruction.h"
 #include "libft/libft.h"
