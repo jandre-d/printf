@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   percent.c                                          :+:    :+:            */
+/*   f.c                                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/17 20:47:24 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 12:28:01 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/17 20:47:14 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/18 17:15:11 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "conversions.h"
+#include "../../includes/pf_printf.h"
 
-bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+bool	pf_f(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
-	c_out->len = 1;
-	c_out->str = TAKE_MULTI(char, 2, "pf_s");
-	c_out->str[0] = '%';
-	return (true);
+	if (c_in->precision == 0)
+		c_in->precision = 6;
+	c_out->str = pf_ldtoa(va_arg(*argl, double), c_in->precision, &c_out->len);
+	return (c_out->str != NULL);
 }

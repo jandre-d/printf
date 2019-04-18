@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   u.c                                                :+:    :+:            */
+/*   x_upper.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/17 20:47:28 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 12:22:59 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/17 20:47:33 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/18 17:15:13 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "conversions.h"
+#include "../../includes/pf_printf.h"
 
-bool	pf_u(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+bool	pf_x_upper(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
-	c_out->str = pf_uitoa_base(va_arg(*argl, unsigned int), 10, &c_out->len, true);
+	c_out->str = pf_uitoa_base(va_arg(*argl, unsigned int), 16, &c_out->len, false);
 	return (c_out->str != NULL);
 }

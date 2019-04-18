@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   f.c                                                :+:    :+:            */
+/*   pf_memmove.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/17 20:47:14 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 15:22:27 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/17 10:48:56 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/18 17:10:08 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "conversions.h"
+#include "libpf.h"
 
-bool	pf_f(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+void	*pf_memmove(char *dst, char *src, size_t len)
 {
-	if (c_in->precision == 0)
-		c_in->precision = 6;
-	c_out->str = pf_ldtoa(va_arg(*argl, double), c_in->precision, &c_out->len);
-	return (c_out->str != NULL);
+	return (ft_memmove((vod *)dst, (const void *)src, len));
 }

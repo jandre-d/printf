@@ -6,9 +6,11 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:47:59 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 16:48:12 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 17:15:24 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/pf_printf.h"
 
 bool	pf_append_left(t_pf_output *output, char *str, size_t str_len, bool free_str)
 {

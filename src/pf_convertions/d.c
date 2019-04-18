@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   s.c                                                :+:    :+:            */
+/*   d.c                                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 12:27:52 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/17 20:47:11 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/18 17:15:10 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "conversions.h"
+#include "../../includes/pf_printf.h"
 
-bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+bool	pf_d(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
-	char *x = va_arg(*argl, char *);
-	c_out->len = ft_strlen(x);
-	c_out->str = TAKE_MULTI(char, c_out->len + 1, "pf_s");
-	ft_strcpy(c_out->str, (const char *)x);
-	return (true);
+	c_out->str = pf_itoa_base(va_arg(*argl, int), 10, &c_out->len, true);
+	return (c_out->str != NULL);
 }

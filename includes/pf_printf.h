@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 17:05:53 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 17:16:06 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@
 # include <stdbool.h>
 # include <stdarg.h>
 # include <unistd.h>
-# define TAKE(x, name) ((x*)pf_memalloc(sizeof(x)))
-# define TAKE_MULTI(x, times, name) ((x*)(pf_memalloc(sizeof(x) * times)))
-# define GIVE(x, name) ft_memdel((void **)&(x))
+# include "../libft/libft.h"
 
 typedef struct	s_pf_output
 {
