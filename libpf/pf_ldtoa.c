@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 12:26:23 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 15:58:51 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static inline int64_t	round_decimal_part(double nbr, int32_t precision,
 	else
 	{
 		vars->decimal_part_leading_zeros = precision - len_after;
-		if (vars->decimal_part == 0)
+		if (value == 0)
 			vars->decimal_part_leading_zeros++;
 	}
 	return ((int64_t)value);

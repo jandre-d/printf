@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/09 17:31:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 15:29:12 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 15:49:52 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static inline int64_t	round_decimal_part(double nbr, int32_t precision,
 	else
 	{
 		vars->decimal_part_leading_zeros = precision - len_after;
-		if (vars->decimal_part == 0)
+		if (value == 0)
 			vars->decimal_part_leading_zeros++;
 	}
 	return ((int64_t)value);
@@ -163,7 +163,7 @@ char					*pf_ldtoa(long double nbr, int32_t precision)
 //0.008 @ 2
 int main()
 {
-	printf("%s", pf_ldtoa(22.2, 1));
+	printf("%s", pf_ldtoa(22.02, 2));
 
 	// printf("size = %zu, useage = %zu, str = \"%s\"\n", x.str_size, x.str_useage, x.str);
 
