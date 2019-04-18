@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 19:01:25 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 12:26:23 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ static inline void		to_string(t_ldbltoa_vars *vars)
 		vars->to_return[0] = '-';
 }
 
-char					*pf_ldtoa(long double nbr, int32_t precision)
+char					*pf_ldtoa(long double nbr, int32_t precision,
+	int32_t *len)
 {
 	t_ldbltoa_vars vars;
 
@@ -101,6 +102,7 @@ char					*pf_ldtoa(long double nbr, int32_t precision)
 		vars.integer_part = round_int_part(nbr);
 		vars.len = pf_intlen(vars.integer_part, 10) + vars.is_negative;
 	}
+	*len = vars.len;
 	vars.to_return = TAKE_MULTI(char, vars.len + 1, "pf_ldbltoa");
 	if (vars.to_return == NULL)
 		return (NULL);

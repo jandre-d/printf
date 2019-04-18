@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:44:40 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 20:44:29 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 12:25:58 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ typedef struct	s_conversion_input
 	bool		flag_min;
 	bool		flag_plus;
 	bool		flag_space;
-	int			padding;
-	int64_t 	int_value;
-	int			precision;
-	long double	long_double_float_value;
+	int32_t		padding;
+	int32_t		precision;
 }				t_conversion_in;
 
 typedef struct	s_ldbltoa_vars
@@ -62,11 +60,11 @@ typedef struct	s_ldbltoa_vars
 }				t_ldbltoa_vars;
 
 int8_t	pf_intlen(int64_t value, uint8_t base);
-char	*pf_itoa_base(int64_t value, int8_t base, bool lowercase);
+char	*pf_itoa_base(int64_t value, int8_t base, int32_t *len, bool lowercase);
 int8_t	pf_uintlen(uint64_t value, uint8_t base);
-char	*pf_uitoa_base(uint64_t value, int8_t base, bool lowercase);
+char	*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len, bool lowercase);
 int64_t pf_10_power_n(int32_t n);
-char	*pf_ldtoa(long double nbr, int32_t precision);
+char	*pf_ldtoa(long double nbr, int32_t precision, int32_t *len);
 void	*pf_memmove(char *dst, char *src, size_t len);
 void	*pf_memcpy(char *dst, char *src, size_t n);
 bool	pf_append_right(t_pf_output *output, char *str, size_t str_len, bool free_str);

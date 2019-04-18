@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 20:58:36 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 12:50:21 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static inline bool do_instruction(t_conversion_in *c_in,
 	(c_in->conversion_type == '%' && pf_percent(c_in, c_out, argl)));
 }
 
-static int64_t	n_till_instruction(char **str)
+static int64_t	n_till_instruction(char *str)
 {
 	int64_t n;
 
 	n = 0;
-	while (*str[n] && *str[n] != '%')
+	while (str[n] && str[n] != '%')
 	{
 		n++;
 	}
@@ -57,7 +57,7 @@ static void loop(char *str, va_list *argl, t_pf_output *output)
 	{
 		ft_bzero((void *)&c_in, sizeof(t_conversion_in));
 		ft_bzero((void *)&c_out, sizeof(t_conversion_out));
-		till_instruction = n_till_instruction(&str);
+		till_instruction = n_till_instruction(str);
 		pf_append_right(output, str, till_instruction, false);
 		str += till_instruction;
 		if (*str == '\0')
@@ -67,10 +67,10 @@ static void loop(char *str, va_list *argl, t_pf_output *output)
 			if (do_instruction(&c_in, &c_out, argl))
 				pf_append_right(output, c_out.str, c_out.len, true);
 			else
-				ft_putstr("eorroroozoeoerijerspecerijen4inodrr");
+				ft_putstr("specerijen malloc NULL");
 		}
 		else
-			ft_putstr("eorroroincorectforrrrrmaatjerspecerijen4inodrr");
+			ft_putstr("incorect formant");
 		str++;
 	}
 }
@@ -90,8 +90,11 @@ int	ft_printf(const char *str, ...)
 	return (output.str_useage);
 }
 
+#include <stdio.h>
+
 int main()
 {
-	ft_printf("%s%s %s", "waaaat", "second", "where am i");
-	//printf("hello");
+	//ft_printf("%.24s%s %42sxxxx", "waaaat", "second", "where am i");
+	ft_printf("hello %c %d %i %o %% %s %u %x %X\n", 't', 42, 24, 9, "banaan", 10, 15, 15);
+	//printf("\"%+.7d\"\n", 42);
 }

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 20:43:12 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 12:09:01 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,29 @@ static inline uint8_t set_flag_double_char(char **str, t_conversion_in *c_in)
 	return (42);
 }
 
+static inline bool set_nbr_param(char **str, t_conversion_in *c_in)
+{
+	bool	is_precision;
+	int32_t i;
+
+	i = 0;
+	is_precision = **str == '.';
+	if (is_precision)
+		*str += 1;
+	while (**str && **str >= '0' && **str <= '9')
+	{
+		i *= 10;
+		i += **str - '0';
+		*str += 1;
+	}
+	if (is_precision)
+		c_in->precision = i;
+	else
+		c_in->padding = i;
+	*str -= 1;
+	return (true);
+}
+
 /*
 ** # 0 - + space h l L
 */
@@ -102,7 +125,9 @@ static inline bool set_flag(char **str, t_conversion_in *c_in)
 			(**str == ' ' && (c_in->flag_space = true)) ||
 			(**str == 'h' && (c_in->flag_h = true)) ||
 			(**str == 'l' && (c_in->flag_l = true)) ||
-			(**str == 'L' && (c_in->flag_L = true)));
+			(**str == 'L' && (c_in->flag_L = true)) ||
+			(**str == '.' && set_nbr_param(str, c_in)) ||
+			(ft_isdigit(**str) && set_nbr_param(str, c_in)));
 	else
 		return (double_char_flag_result);
 }

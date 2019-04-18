@@ -6,13 +6,14 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:42:11 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/14 18:37:05 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 12:16:58 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libpf.h"
 
-static inline void	max_negative_value_case(int64_t *value, int8_t *i, char *str)
+static inline void	max_negative_value_case(int64_t *value, int8_t *i,
+	char *str)
 {
 	if (*value < 0)
 	{
@@ -27,7 +28,8 @@ static inline void	max_negative_value_case(int64_t *value, int8_t *i, char *str)
 	}
 }
 
-char			*pf_itoa_base(int64_t value, int8_t base, bool lowercase)
+char				*pf_itoa_base(int64_t value, int8_t base,
+	int32_t *len, bool lowercase)
 {
 	char	*to_return;
 	char	*character_set;
@@ -39,6 +41,7 @@ char			*pf_itoa_base(int64_t value, int8_t base, bool lowercase)
 	is_negative = value < 0;
 	character_set = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
 	i = pf_intlen(value, base);
+	*len = i;
 	to_return = TAKE_MULTI(char, i + 1, "pf_itoa_base");
 	if (to_return == NULL)
 		return (NULL);
