@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:47:20 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 17:15:12 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 18:05:22 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	pf_p(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 	if (temp == NULL)
 		return (NULL);
 	pf_memcpy(temp, "0x", 3);
-	pf_memcpy(temp + 2, c_out->str, pf_strlen(c_out->str));
+	pf_memcpy(temp + 2, c_out->str, ft_strlen(c_out->str));
 	GIVE(c_out->str, "pf_p");
 	c_out->str = temp;
 	c_out->len += 2;

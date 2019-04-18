@@ -6,7 +6,7 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/09 10:02:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/01 15:36:49 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/04/18 18:10:22 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ FILES = ft_isupper ft_islower \
 	ft_lstnew ft_lstdelone ft_lstdel \
 	ft_lstadd ft_lstiter ft_lstmap \
 	ft_strrev ft_islower ft_isupper ft_strupper ft_strlower ft_strislower ft_strisupper ft_map
- 
+
 $(NAME):
 	gcc -c -Wall -Wextra -Werror $(FILES:=.c)
 	ar rc $(NAME) $(FILES:=.o)
