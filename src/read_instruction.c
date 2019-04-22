@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 18:47:51 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/22 18:50:02 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@
 */
 static inline bool set_conversion(char **str, t_conversion_in *c_in)
 {
-	if (**str == 'c' ||
+	if (**str == 'C' ||
+		**str == 'c' ||
 		**str == 'S' ||
 		**str == 's' ||
 		**str == 'p' ||

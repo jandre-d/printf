@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 18:44:57 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/22 18:49:51 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ bool	pf_append_left(t_pf_output *output, char *str, size_t str_len, bool free_st
 /*conversions*/
 
 bool	pf_c(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
+bool	pf_c_upper(t_conversion_in *c_in, t_conversion_out *c_out,
+	va_list *argl);
+
 bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 bool	pf_s_upper(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
