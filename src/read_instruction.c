@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 17:15:51 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/22 18:47:51 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,18 @@
 static inline bool set_conversion(char **str, t_conversion_in *c_in)
 {
 	if (**str == 'c' ||
+		**str == 'S' ||
 		**str == 's' ||
 		**str == 'p' ||
+		**str == 'D' ||
 		**str == 'd' ||
 		**str == 'i' ||
+		**str == 'O' ||
 		**str == 'o' ||
+		**str == 'U' ||
 		**str == 'u' ||
-		**str == 'x' ||
 		**str == 'X' ||
+		**str == 'x' ||
 		**str == 'f' ||
 		**str == '%')
 		{
@@ -138,6 +142,7 @@ static inline bool set_flag(char **str, t_conversion_in *c_in)
 bool read_instruction(char **str, t_conversion_in *c_in)
 {
 	if (**str != '\0')
+	{
 		while (true)
 		{
 			*str += 1;
@@ -150,5 +155,6 @@ bool read_instruction(char **str, t_conversion_in *c_in)
 			else
 				return (false);
 		}
+	}
 	return (false);
 }

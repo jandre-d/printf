@@ -6,25 +6,29 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 17:15:43 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/22 18:43:56 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pf_printf.h"
+#include "pf_printf.h"
 
 static inline bool do_instruction(t_conversion_in *c_in,
 	t_conversion_out *c_out, va_list *argl)
 {
 	return (
 	(c_in->conversion_type == 'c' && pf_c(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'S' && pf_s_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 's' && pf_s(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'p' && pf_p(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'D' && pf_d_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'd' && pf_d(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'i' && pf_i(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'O' && pf_o_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'o' && pf_o(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'U' && pf_u_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'u' && pf_u(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'x' && pf_x(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'X' && pf_x_upper(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'x' && pf_x(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'f' && pf_f(c_in, c_out, argl)) ||
 	(c_in->conversion_type == '%' && pf_percent(c_in, c_out, argl)));
 }
@@ -62,10 +66,12 @@ static void loop(char *str, va_list *argl, t_pf_output *output)
 			if (do_instruction(&c_in, &c_out, argl))
 				pf_append_right(output, c_out.str, c_out.len, true);
 			else
-				ft_putstr("specerijen malloc NULL");
+				ft_putstr("**MALLOC ERROR**");
 		}
 		else
-			ft_putstr("incorect formant");
+			continue;
+		if (*str == '\0')
+			return ;
 		str++;
 	}
 }

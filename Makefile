@@ -6,14 +6,14 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/18 17:19:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/22 17:25:27 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/04/22 18:15:23 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= libftprintf.a
 
 SRC				= append ft_printf read_instruction
-SRC_CONVERTIONS	= c d f i o p percent s u x_upper x
+SRC_CONVERTIONS	= c d d_upper f i o o_upper p percent s s_upper u u_upper x x_upper
 SRC_UTIL		= pf_10_power_n pf_intlen pf_itoa_base pf_ldtoa pf_memcpy \
 			pf_memmove pf_uintlen pf_uitoa_base
 
@@ -32,7 +32,7 @@ re: fclean all
 $(NAME):
 	cd libft && make
 	cp libft/libft.a $(NAME)
-	gcc -c $(ALL_C_FILES) -I $(INC_DIR)
+	gcc -c $(ALL_C_FILES) -I $(INC_DIR) -g
 	ar -r $(NAME) $(ALL_O_FILES)
 	ranlib $(NAME)
 
@@ -45,7 +45,8 @@ fclean: clean
 	rm -f $(NAME)
 
 a:
-	gcc testmain.c libftprintf.a
+	rm -f a.out
+	gcc testmain.c libftprintf.a -g
 	./a.out
 
 x: 
