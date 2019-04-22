@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:05:25 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 17:10:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/22 17:21:02 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libpf.h"
+#include "pf_printf.h"
 
-void	*pf_memcpy(char *dst, char *src, size_t n)
+char	*pf_memcpy(char *dst, char *src, size_t n)
 {
-	return (ft_memcpy((void *)dst, (const void *src), n));
+	return ((char *)ft_memcpy((void *)dst, (const void *)src, n));
 }

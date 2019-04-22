@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 10:48:56 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/18 17:10:08 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/22 17:21:20 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libpf.h"
+#include "pf_printf.h"
 
-void	*pf_memmove(char *dst, char *src, size_t len)
+char	*pf_memmove(char *dst, char *src, size_t len)
 {
-	return (ft_memmove((vod *)dst, (const void *)src, len));
+	return ((char *)ft_memmove((void *)dst, (const void *)src, len));
 }
