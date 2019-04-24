@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:01:59 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/17 12:52:57 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/06 12:32:57 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define TAKE_MULTI(x, times, name) ((x*)(ft_memalloc(sizeof(x) * times)))
 # define GIVE(x, name) ft_memdel((void **)&(x))
 # define ABS(x) ((x) < 0 ? -(x) : x)
+# define TRUE 1
+# define FALSE 0
 
 typedef struct		s_list
 {
