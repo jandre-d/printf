@@ -3,60 +3,63 @@
 /*                                                        ::::::::            */
 /*   padding.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
+/*   By: twoerdem <twoerdem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/10 17:22:47 by twoerdem       #+#    #+#                */
-/*   Updated: 2019/04/17 20:31:04 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/18 17:43:32 by twoerdem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../libpf/libpf.h"
 #include <stdio.h>
 #include <stdlib.h>
 
+void	zero_padding(t_conversion_out *res, t_conversion_in *inp)
+{
+	if (inp->flag_plus == true)
+	{
+		if (res->is_negative == true)
+		{
+			ft_putchar('-');
+			res->str++;
+		}
+		else
+		{
+			ft_putchar('+');
+			inp->padding--;
+		}
+	}
+	if (inp->conversion_type != 'i' && inp->conversion_type != 'd' &&\
+	inp->flag_hash == true)
+	{
+		if (inp->conversion_type == 'o')
+		{
+			ft_putchar('0');
+			inp->padding--;
+		}
+		if (inp->conversion_type == 'x')
+		{
+			ft_putstr("0x");
+			inp->padding -= 2;
+		}
+		if (inp->conversion_type == 'X')
+		{
+			ft_putstr("0X");
+			inp->padding -= 2;
+		}
+	}
+	while (inp->padding > res->len)
+	{
+		ft_putchar('0');
+		inp->padding--;
+	}
+	ft_putstr(res->str);
+}
+
 void	padding(t_conversion_out *res, t_conversion_in *inp)
 {
-	int		i;
-	char	*new;
-	int 	sign;
-	
-	i = 0;
-	sign = 0;
-	new = ft_strnew(inp->padding);
-	new[inp->padding] = '\0';
-	while (i < inp->padding)
-	{
-		if (inp->flag_0 == 1)
-			new[i] = '0';
-		else
-			new[i] = ' ';
-		i++;
-	}
-	i = 0;
-	if (inp->flag_plus == 1 && res->str[0] != '-' && (inp->flag_min == 1 || inp->flag_0 == 1))
-	{
-		new[i] = '+';
-		sign = 1;
-	}
-	else if (inp->flag_plus == 1 && res->str[0] != '-' && inp->flag_min == 0)
-	{
-		new[inp->padding - res->len - 1] = '+';
-		sign = 1;
-	}
-	while (i < res->len)
-	{
-		if (inp->flag_min == 1 && inp->flag_0 == 0)
-			new[i + sign] = res->str[i];
-		else
-			new[inp->padding - res->len + i] = res->str[i];
-		i++;
-	}
-	if (res->str[0] == '-' && inp->flag_0 == 1)
-	{
-		new[inp->padding - res->len] = '0';
-		new[0] = '-';
-	}
-	res->str = new;
+	if (inp->flag_0 == true)
+		zero_padding(res, inp);
 }
 
 int		main(void)
@@ -69,7 +72,7 @@ int		main(void)
 	printf("'%05d'\n", -10);
 	printf("'%+5d'\n", -10);
 	printf("'%-+5d'\n\n", -10);
-	
+
 	printf("'%5d'\n", 10);
 	printf("'%-5d'\n", 10);
 	printf("'%05d'\n", 10);
@@ -79,19 +82,20 @@ int		main(void)
 	printf("'%5X'\n", 15);
 	printf("'%-5X'\n", 15);
 	printf("'%05X'\n\n", 15);
-	
+
 	t_conversion_out	*res;
-	t_conversion_in	*inp;
+	t_conversion_in		*inp;
 
 	res = (t_conversion_out *)malloc(sizeof(t_conversion_out *));
 	inp = (t_conversion_in *)malloc(sizeof(t_conversion_in *));
-	inp->padding = 50;
-	res->str = "HELLO";
+	inp->padding = 5;
+	res->str = "FFF";
 	res->len = ft_strlen(res->str);
+	inp->flag_0 = true;
+	inp->conversion_type = 'x';
+	inp->flag_hash = false;
+	ft_putchar('\'');
 	padding(res, inp);
-	printf("'%s'\n", res->str);
-	inp->flag_min = 1;
-	res->str = "HELLO";
-	padding(res, inp);
-	printf("'%s'\n", res->str);
+	ft_putchar('\'');
+	ft_putchar('\n');
 }
