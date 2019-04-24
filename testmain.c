@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 20:53:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 21:33:30 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/24 20:56:38 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <wchar.h>
-#include "libft.h"
+#include "libft/libft.h"
 #include <stdint.h>
 #include <stdlib.h>
 
@@ -30,43 +30,17 @@
 //https://www.utf8-chartable.de/unicode-utf8-table.pl
 //https://mothereff.in/byte-counter
 
-//useless
-int64_t w_strlen_ehm(uint8_t *str)
-{
-	int64_t i;
-	int64_t to_return;
 
-	i = 0;
-	to_return = 0;
-	// while (str[i])
-	// {
-	// 	if (str[i] < 0x80 || str[i] > 0xbf)
-	// 		to_return++;
-	// 	i++;
-	// }
-	while (str[i])
-	{
-		if (0b00000010 != (uint8_t)(str[i] >> 6))
-			to_return++;
-		i++;
-	}
-	return (to_return);
-}
-
-//broken
 int w_char_byte_count(wchar_t wchar)
 {
-	if (wchar >> 31 == 0b00000000000000000000000000000000)
+	if (wchar <= 0x7F)
 		return (1);
-	if (wchar >> 29 == 0b00000000000000000000000000000110)
+	if (wchar <= 0x7FF)
 		return (2);
-	if (wchar >> 28 == 0b00000000000000000000000000001110)
+	if (wchar <= 0xFFFF)
 		return (3);
-	if (wchar >> 27 == 0b00000000000000000000000000011110)
-		return (4);
-	return (-1);
+	return (4);
 }
-
 
 char *w_char_to_writable_string(wchar_t wc, int *size)
 {
@@ -75,19 +49,38 @@ char *w_char_to_writable_string(wchar_t wc, int *size)
 
 	*size = w_char_byte_count(wc);
 	to_return = ft_strnew(*size);
-	i = 1;
-	while (i <= *size)
+	if (*size == 1)
+		to_return[0] = wc;
+	if (*size == 2)
 	{
-		if (i == 1)
-			to_return[i] = wc & 0b11111111000000000000000000000000;
-		if (i == 2)
-			to_return[i] = wc & 0b00000000111111110000000000000000;
-		if (i == 3)
-			to_return[i] = wc & 0b00000000000000001111111100000000;
-		if (i == 4)
-			to_return[i] = wc & 0b00000000000000000000000011111111;
-		i++;
+		to_return[1] = (char)(0b00000000000000000000000010000000 |
+						(wc & 0b00000000000000000000000000111111));
+		to_return[0] = (char)(0b00000000000000000000000011000000 |
+				 ((wc >> 6) & 0b00000000000000000000000000011111));
 	}
+	if (*size == 3)
+	{
+		to_return[2] = (char)(0x80 | (wc & 0x3f));
+		to_return[1] = (char)(0x80 | ((wc >> 6) & 0x3f));
+		to_return[0] = (char)(0xe0 | ((wc >> 12) & 0b00000000000000000000000000001111));
+	}
+	if (*size == 4)
+	{
+		to_return[3] = (char)(0b00000000000000000000000010000000 |
+						(wc & 0b00000000000000000000000000111111));
+		to_return[2] = (char)(0b00000000000000000000000010000000 |
+				 ((wc >> 6) & 0b00000000000000000000000000111111));
+		to_return[1] = (char)(0b00000000000000000000000010000000 |
+				((wc >> 12) & 0b00000000000000000000000000111111));
+		to_return[0] = (char)(0b00000000000000000000000011110000 |
+				((wc >> 12) & 0b00000000000000000000000000000111));
+	}
+
+	char str0 = to_return[0];
+	char str1 = to_return[1];
+	char str2 = to_return[2];
+	char str3 = to_return[3];
+
 	return (to_return);
 }
 
@@ -140,55 +133,43 @@ char *w_str_to_writable_string(wchar_t *wchar, int *size)
 	return (to_return);
 }
 
-//米 = ç±³
-/*
-** 米 = 0Xe7 0X8c 0Xab
-** 米 = 11100111 \
-**		10001100 \
-**		10101011
-*/
-
 void test()
 {
 	int x;
 	char *hallo = w_char_to_writable_string(L'米', &x);
 
 	// char a[4];
+	//米 = ç±³
 
+	//		target:
+	// 			a[0] = 0Xe7; //11100111 
+	// 			a[1] = 0X8c; //10001100
+	// 			a[2] = 0Xab; //10101011
+	// 			a[3] = 0;
+
+	/* i get:
+		input = 111110001110011
+
+
+3f = 111111   = 63
+e0 = 11100000 = 224
+80 = 10000000 = 128
+
+
+	// a[0] = 0Xe7; //11100111 
+	// a[1] = 0Xb1; //10110001
+	// a[2] = 0Xb3; //10110011
 	// a[3] = 0;
-	// a[0] = 0Xe7; //11100111
-	// a[1] = 0X8c; //10001100
-	// a[2] = 0Xab; //10101011
-	// ft_putstr(a);
 
-	// wchar_t x[2];
-	// __darwin_wchar_t a;
-
-	// x[0] = "米";
-	// x[1] = "米";
-	// printf("%lld", w_strlen_ehm((uint8_t *)x));
+	*/
 }
 
 int main()
 {
 	test();
-	// uint8_t x[7];
-	// x[0] = 231;
-	// x[1] = 140;
-	// x[2] = 171;
-	// x[3] = 231;
-	// x[4] = 140;
-	// x[5] = 171;
-	// x[6] = 0;
-
-	//printf("%lld", w_strlen(x));
-	//ft_printf("\"% Zoooo\"\n");
-	// printf("\"%s\"\n", "42");
-	// printf("\"%S\"\n", "42");
-	// printf("%u\n", 42);
-	// printf("%U\n", 42);
-	// ft_printf("%u\n", 42);
-	// ft_printf("%U\n", 42);
+	int x;
+	printf("%s",pf_itoa_base(L'米', 2, &x, true));
+	printf("%d", w_char_byte_count((wchar_t)L'米'));
 
 	return (0);
 }
