@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 16:40:08 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 17:22:01 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static void loop(char *str, va_list *argl, t_pf_output *output)
 		ft_bzero((void *)&c_in, sizeof(t_conversion_in));
 		ft_bzero((void *)&c_out, sizeof(t_conversion_out));
 		till_instruction = n_till_instruction(str);
-		pf_append_right(output, str, till_instruction, false);
+		pf_append(output, str, till_instruction, false);
 		str += till_instruction;
 		if (*str == '\0')
 			return ;
 		if (read_instruction(&str, &c_in))
 		{
 			if (do_instruction(&c_in, &c_out, argl))
-				pf_append_right(output, c_out.str, c_out.len, true);
+				pf_append(output, c_out.str, c_out.len, true);
 			else
 				ft_putstr("**MALLOC ERROR**");
 		}

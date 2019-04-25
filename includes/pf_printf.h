@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 16:05:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 17:22:15 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*pf_wstr_to_str(int *wstr, int *size);
 
 /* src other */
 bool read_instruction(char **str, t_conversion_in *c_in);
-bool	pf_append_right(t_pf_output *output, char *str, size_t str_len, bool free_str);
-bool	pf_append_left(t_pf_output *output, char *str, size_t str_len, bool free_str);
+bool	pf_append(t_pf_output *output, char *str, size_t str_len, bool free_str);
+bool	pf_prepend(t_pf_output *output, char *str, size_t str_len, bool free_str);
 
 #endif
