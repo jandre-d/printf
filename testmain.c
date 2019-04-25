@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 20:53:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/24 20:56:38 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 13:55:54 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 //https://mothereff.in/byte-counter
 
 
-int w_char_byte_count(wchar_t wchar)
+static inline int	wchar_byte_count(int wchar)
 {
 	if (wchar <= 0x7F)
 		return (1);
@@ -42,101 +42,84 @@ int w_char_byte_count(wchar_t wchar)
 	return (4);
 }
 
-char *w_char_to_writable_string(wchar_t wc, int *size)
+char				*pf_wchar_to_str(int wchar, int *size)
 {
 	char *to_return;
-	int i;
 
-	*size = w_char_byte_count(wc);
+	*size = wchar_byte_count(wchar);
 	to_return = ft_strnew(*size);
 	if (*size == 1)
-		to_return[0] = wc;
+		to_return[0] = wchar;
 	if (*size == 2)
 	{
-		to_return[1] = (char)(0b00000000000000000000000010000000 |
-						(wc & 0b00000000000000000000000000111111));
-		to_return[0] = (char)(0b00000000000000000000000011000000 |
-				 ((wc >> 6) & 0b00000000000000000000000000011111));
+		to_return[1] = (char)(0x80 | (wchar & 0x3F));
+		to_return[0] = (char)(0xC0 | ((wchar >> 6) & 0x1F));
 	}
 	if (*size == 3)
 	{
-		to_return[2] = (char)(0x80 | (wc & 0x3f));
-		to_return[1] = (char)(0x80 | ((wc >> 6) & 0x3f));
-		to_return[0] = (char)(0xe0 | ((wc >> 12) & 0b00000000000000000000000000001111));
+		to_return[2] = (char)(0x80 | (wchar & 0x3F));
+		to_return[1] = (char)(0x80 | ((wchar >> 6) & 0x3F));
+		to_return[0] = (char)(0xE0 | ((wchar >> 12) & 0xF));
 	}
 	if (*size == 4)
 	{
-		to_return[3] = (char)(0b00000000000000000000000010000000 |
-						(wc & 0b00000000000000000000000000111111));
-		to_return[2] = (char)(0b00000000000000000000000010000000 |
-				 ((wc >> 6) & 0b00000000000000000000000000111111));
-		to_return[1] = (char)(0b00000000000000000000000010000000 |
-				((wc >> 12) & 0b00000000000000000000000000111111));
-		to_return[0] = (char)(0b00000000000000000000000011110000 |
-				((wc >> 12) & 0b00000000000000000000000000000111));
+		to_return[3] = (char)(0x80 | (wchar & 0x3F));
+		to_return[2] = (char)(0x80 | ((wchar >> 6) & 0x3F));
+		to_return[1] = (char)(0x80 | ((wchar >> 12) & 0x3F));
+		to_return[0] = (char)(0xF0 | ((wchar >> 12) & 0x7));
 	}
-
-	char str0 = to_return[0];
-	char str1 = to_return[1];
-	char str2 = to_return[2];
-	char str3 = to_return[3];
-
 	return (to_return);
 }
 
-int w_str_size(wchar_t *wchar,int wchar_count)
+static inline int	wstr_size(int *wstr)
 {
 	int i;
 	int size;
 
 	i = 0;
 	size = 0;
-	while (i < wchar_count)
+	while (wstr[i])
 	{
-		size += w_char_byte_count(wchar[i]);
+		size += wchar_byte_count(wstr[i]);
 		i++;
 	}
 	return (size);
 }
 
-int wstr_len(wchar_t *wstr)
+static inline int	wstr_len(int *wstr)
 {
 	int i;
 
 	i = 0;
-	while (wstr[i] != 0)
+	while (wstr[i])
 		i++;
 	return (i);
 }
 
-char *w_str_to_writable_string(wchar_t *wchar, int *size)
+char				*pf_wstr_to_str(int *wstr, int *size)
 {
-	char	*to_return;
-	int		to_return_usage;
+	char	*str;
 	int		i;
-	int		char_count;
-	char	*wchar_add;
-	int		wchar_add_size;
-	
-	char_count = wstr_len(wchar);
-	*size = w_str_size(wchar, char_count);
-	to_return = ft_strnew(*size);
-	to_return_usage = 0;
+	int		add_size;
+	char	*add;
+
+	str = ft_strnew(wstr_size(wstr));
 	i = 0;
-	while (i < char_count)
+	while (wstr[i])
 	{
-		wchar_add = w_char_to_writable_string(wchar[i], &wchar_add_size);
-		pf_memcpy(to_return + to_return_usage, wchar_add, wchar_add_size);
-		free(wchar_add);
+		add = pf_wchar_to_str(wstr[i], &add_size);
+		pf_memcpy(str + *size, add, add_size);
+		*size += add_size;
 		i++;
 	}
-	return (to_return);
+	return (str);
 }
+
 
 void test()
 {
-	int x;
-	char *hallo = w_char_to_writable_string(L'米', &x);
+	//int x;
+	//char *hallo = wchar_to_writable_string(L'米', &x);
 
 	// char a[4];
 	//米 = ç±³
@@ -164,12 +147,25 @@ e0 = 11100000 = 224
 	*/
 }
 
+
+void print_one()
+{
+	int b = 0;
+	char *str = pf_wstr_to_str(L"力米緑力米力米力", &b);
+
+	ft_putstr(str);
+}
+
+
+
 int main()
 {
-	test();
-	int x;
-	printf("%s",pf_itoa_base(L'米', 2, &x, true));
-	printf("%d", w_char_byte_count((wchar_t)L'米'));
+	print_one();
+
+	// test();
+	// int x;
+	// printf("%s",pf_itoa_base(L'米', 2, &x, true));
+	// printf("%d", w_char_byte_count((wchar_t)L'米'));
 
 	return (0);
 }

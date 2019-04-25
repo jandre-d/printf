@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 18:49:51 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 14:04:51 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,7 @@ typedef struct	s_ldbltoa_vars
 	char 	*to_return;
 }				t_ldbltoa_vars;
 
-
-
-bool read_instruction(char **str, t_conversion_in *c_in);
-
-
-
-/* lib */
-int8_t	pf_intlen(int64_t value, uint8_t base);
-char	*pf_itoa_base(int64_t value, int8_t base, int32_t *len, bool lowercase);
-int8_t	pf_uintlen(uint64_t value, uint8_t base);
-char	*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len, bool lowercase);
-int64_t pf_10_power_n(int32_t n);
-char	*pf_ldtoa(long double nbr, int32_t precision, int32_t *len);
-char	*pf_memmove(char *dst, char *src, size_t len);
-char	*pf_memcpy(char *dst, char *src, size_t n);
-bool	pf_append_right(t_pf_output *output, char *str, size_t str_len, bool free_str);
-bool	pf_append_left(t_pf_output *output, char *str, size_t str_len, bool free_str);
-
-
-
 /*conversions*/
-
 bool	pf_c(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 bool	pf_c_upper(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
@@ -89,13 +68,15 @@ bool	pf_c_upper(t_conversion_in *c_in, t_conversion_out *c_out,
 bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 bool	pf_s_upper(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
-	
+
 bool	pf_p(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
+
 bool	pf_d(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 bool	pf_d_upper(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
-	
+
 bool	pf_i(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
+
 bool	pf_o(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 bool	pf_o_upper(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
@@ -112,5 +93,23 @@ bool	pf_f(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 
 bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
+
+/*util*/
+int64_t pf_10_power_n(int32_t n);
+int8_t	pf_intlen(int64_t value, uint8_t base);
+char	*pf_itoa_base(int64_t value, int8_t base, int32_t *len, bool lowercase);
+char	*pf_ldtoa(long double nbr, int32_t precision, int32_t *len);
+char	*pf_memcpy(char *dst, char *src, size_t n);
+char	*pf_memmove(char *dst, char *src, size_t len);
+int8_t	pf_uintlen(uint64_t value, uint8_t base);
+char	*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len, bool lowercase);
+int		wchar_byte_count(int wchar);
+char	*pf_wchar_to_str(int wchar, int *size);
+char	*pf_wstr_to_str(int *wstr, int *size);
+
+/* src other */
+bool read_instruction(char **str, t_conversion_in *c_in);
+bool	pf_append_right(t_pf_output *output, char *str, size_t str_len, bool free_str);
+bool	pf_append_left(t_pf_output *output, char *str, size_t str_len, bool free_str);
 
 #endif
