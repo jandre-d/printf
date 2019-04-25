@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 20:53:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 14:36:24 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 16:35:42 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@
 
 int main()
 {
-	// int x;
-	// printf("%s",pf_itoa_base(L'米', 2, &x, true));
-	// printf("%d", w_char_byte_count((wchar_t)L'米'));
-	char c;
-	ft_printf("%ld\n", (long)INT_MAX + 1);
-	printf("%ld", (long)INT_MAX + 1);
+	ft_printf("%c heello\n", 0);
+	//ft_printf("%s\n%ls", "hello", L"米米米米");
 	return (0);
 }

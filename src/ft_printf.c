@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 15:20:20 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 16:40:08 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ static inline bool do_instruction(t_conversion_in *c_in,
 	t_conversion_out *c_out, va_list *argl)
 {
 	return (
-	(c_in->conversion_type == 'C' && pf_c_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'c' && pf_c(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'S' && pf_s_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 's' && pf_s(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'p' && pf_p(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'd' && pf_di(c_in, c_out, argl)) ||

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 15:40:25 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 15:51:01 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ static inline bool set_conversion(char **str, t_conversion_in *c_in)
 */
 static inline uint8_t set_flag_double_char(char **str, t_conversion_in *c_in)
 {
-	if (**str == 'l' && c_in->flag_l)
+	if (**str == 'l' && c_in->mod_l)
 	{
 		if (*(*str -1) == 'l')
 		{
-			c_in->flag_ll = true;
-			c_in->flag_l = false;
+			c_in->mod_ll = true;
+			c_in->mod_l = false;
 			return (true);
 		}
 		return (false);
 	}
-	if (**str == 'h' && c_in->flag_h)
+	if (**str == 'h' && c_in->mod_h)
 	{
 		if (*(*str -1) == 'h')
 		{
-			c_in->flag_hh = true;
-			c_in->flag_h = false;
+			c_in->mod_hh = true;
+			c_in->mod_h = false;
 			return (true);
 		}
 		return (false);
@@ -93,14 +93,14 @@ static inline bool set_flag(char **str, t_conversion_in *c_in)
 	double_char_flag_result = set_flag_double_char(str, c_in);
 	if (double_char_flag_result == 42)
 		return (
-			(**str == '#' && (c_in->flag_hash = true)) ||
+			(**str == '#' && (c_in->mod_hash = true)) ||
 			(**str == '0' && (c_in->flag_0 = true)) ||
 			(**str == '-' && (c_in->flag_min = true)) ||
 			(**str == '+' && (c_in->flag_plus = true)) ||
 			(**str == ' ' && (c_in->flag_space = true)) ||
-			(**str == 'h' && (c_in->flag_h = true)) ||
-			(**str == 'l' && (c_in->flag_l = true)) ||
-			(**str == 'L' && (c_in->flag_L = true)) ||
+			(**str == 'h' && (c_in->mod_h = true)) ||
+			(**str == 'l' && (c_in->mod_l = true)) ||
+			(**str == 'L' && (c_in->mod_L = true)) ||
 			(**str == '.' && set_nbr_param(str, c_in)) ||
 			((**str >= '0' && **str <= '9') && set_nbr_param(str, c_in)));
 	else
