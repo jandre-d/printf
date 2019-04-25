@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 14:20:15 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 15:45:42 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,20 @@ bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
 	char *x = va_arg(*argl, char *);
 	char *nul = "(null)";
+
 	if (x == NULL)
 	{
 		c_out->len = 6;
 		c_out->str = TAKE_MULTI(char, 7, "pf_s");
 		if (c_out->str == NULL)
 			return (false);
-		ft_strcpy(c_out->str, (const char *)nul);
+		pf_memcpy(c_out->str, nul, c_out->len);
+	}
+	if (c_in->flag_l)
+	{
+		c_out->str = pf_wstr_to_str(x, c_out->len);
+		if (c_out->str == NULL)
+			return (false);
 	}
 	else
 	{
@@ -30,7 +37,7 @@ bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 		c_out->str = TAKE_MULTI(char, c_out->len + 1, "pf_s");
 		if (c_out->str == NULL)
 			return (false);
-		ft_strcpy(c_out->str, (const char *)x);
+		pf_memcpy(c_out->str, x, c_out->len);
 	}
 	return (true);
 }

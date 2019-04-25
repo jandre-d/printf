@@ -6,50 +6,20 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 18:50:02 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 15:40:25 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pf_printf.h"
+#include "pf_printf.h"
 
-// /*
-// ** delete ?
-// */
-// static void overwrite_flags(t_conversion_in *c_in)
-// {
-// 	char c_ty;
-
-// 	c_ty = c_in->conversion_type;
-// 	if (c_ty == 'c' || c_ty == 'd' || c_ty == 'i' || c_ty == 'n' ||
-// 	c_ty == 'p' || c_ty == 's' || c_ty == 'u')
-// 		c_in->flag_hash = false;
-// 	if (c_ty == 'n' || c_in->flag_min || (c_in->precision > 0 && (c_ty == 'd' ||
-// 	c_ty == 'i' || c_ty == 'o' || c_ty == 'u' || c_ty == 'i' || c_ty == 'x')))
-// 		c_in->flag_0 = false;
-// 	if (c_ty == 'n')
-// 		c_in->flag_min = false;
-// 	if (((c_ty == 'd' || c_ty == 'f') == false && c_in->flag_space) ||
-// 	c_in->flag_plus)
-// 		c_in->flag_space = false;
-// }
-
-/*
-** b: boolean --- bonus ?
-** csp diouxX f %%
-*/
 static inline bool set_conversion(char **str, t_conversion_in *c_in)
 {
-	if (**str == 'C' ||
-		**str == 'c' ||
-		**str == 'S' ||
+	if (**str == 'c' ||
 		**str == 's' ||
 		**str == 'p' ||
-		**str == 'D' ||
 		**str == 'd' ||
 		**str == 'i' ||
-		**str == 'O' ||
 		**str == 'o' ||
-		**str == 'U' ||
 		**str == 'u' ||
 		**str == 'X' ||
 		**str == 'x' ||

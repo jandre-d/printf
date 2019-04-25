@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   x.c                                                :+:    :+:            */
+/*   di.c                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/17 20:47:31 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 14:40:29 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/25 15:07:22 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/25 15:22:59 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-bool	pf_x(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+bool	pf_di(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
-	c_out->str = pf_uitoa_base(va_arg(*argl, uint64_t), 16, &c_out->len, true);
+	if (c_in->flag_hh || c_in->flag_h)
+		c_out->str = pf_itoa_base(va_arg(*argl, int), 10, &c_out->len, true);
+	else if (c_in->flag_l)
+		c_out->str = pf_itoa_base(va_arg(*argl, long), 10, &c_out->len, true);
+	else if (c_in->flag_ll)
+		c_out->str = pf_itoa_base(va_arg(*argl, long long), 10, &c_out->len, true);
 	return (c_out->str != NULL);
 }

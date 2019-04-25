@@ -6,14 +6,14 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/18 17:19:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/25 13:59:17 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/04/25 15:40:06 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= libftprintf.a
 
 SRC				= append ft_printf read_instruction
-SRC_CONVERTIONS	= c c_upper d d_upper f i o o_upper p percent s s_upper u u_upper x x_upper
+SRC_CONVERTIONS	= c di f ouxX p percent s
 SRC_UTIL		= pf_10_power_n pf_intlen pf_itoa_base pf_ldtoa pf_memcpy \
 			pf_memmove pf_uintlen pf_uitoa_base pf_wchar pf_wstr pf_wchar_byte_count
 

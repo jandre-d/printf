@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 18:50:49 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/25 15:20:20 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ static inline bool do_instruction(t_conversion_in *c_in,
 	(c_in->conversion_type == 'S' && pf_s_upper(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 's' && pf_s(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'p' && pf_p(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'D' && pf_d_upper(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'd' && pf_d(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'i' && pf_i(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'O' && pf_o_upper(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'o' && pf_o(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'U' && pf_u_upper(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'u' && pf_u(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'X' && pf_x_upper(c_in, c_out, argl)) ||
-	(c_in->conversion_type == 'x' && pf_x(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'd' && pf_di(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'i' && pf_di(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'o' && pf_ouxX(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'u' && pf_ouxX(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'X' && pf_ouxX(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'x' && pf_ouxX(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'f' && pf_f(c_in, c_out, argl)) ||
 	(c_in->conversion_type == '%' && pf_percent(c_in, c_out, argl)));
 }
