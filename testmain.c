@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 20:53:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:11:00 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:13:44 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 					  For x and X conversions, a non-zero result has the string `0x' (or `0X' for X con-
                       versions) prepended to it.
-					  
+
 					  For f conversions, the result will always contain a decimal
                       point, even if no digits follow it (normally, a decimal
                       point appears in the results of those conversions only
