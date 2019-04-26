@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 19:50:04 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:16:37 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_conversion_input
 	bool		flag_space;
 	int32_t		padding;
 	int32_t		precision;
+	bool		precision_default;
 }				t_conversion_in;
 
 typedef struct	s_ldbltoa_vars

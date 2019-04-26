@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 19:33:03 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:30:48 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char					*pf_ldtoa(long double nbr, int32_t precision,
 	else
 	{
 		vars.integer_part = round_int_part(nbr);
-		vars.len = pf_intlen(vars.integer_part, 10) + c_out->is_negative;
+		vars.len = pf_intlen(vars.integer_part, 10);
 	}
 	c_out->len = vars.len;
 	vars.to_return = TAKE_MULTI(char, vars.len + 1, "pf_ldbltoa");

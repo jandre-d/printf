@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 20:53:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:13:44 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:34:16 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,19 @@
 // #0-+ and space
 int main()
 {
-	float x = -22;
-	   printf("\"%#+8.0f\"\n", x);
-	ft_printf("\"%#+8.0f\"\n", x);
+	int x = -22;
+	   printf("\"%+8.0d\"\n", x);
+	ft_printf("\"%+8.0d\"\n", x);
 
-	   printf("\"%0+8.0f\"\n", x);
-	ft_printf("\"%0+8.0f\"\n", x);
+	   printf("\"%0+8d\"\n", x);
+	ft_printf("\"%0+8d\"\n", x);
 
-	   printf("\"% 8f\"\n", x);
-	ft_printf("\"% 8f\"\n", x);
+	   printf("\"% 8d\"\n", x);
+	ft_printf("\"% 8d\"\n", x);
 
-	    printf("\"%+10f\"\n", x);
-	ft_printf("\"%+10f\"\n", x);
+	x = 22;
+	    printf("\"%+10.2d\"\n", x);
+	ft_printf("\"%+10.2d\"\n", x);
 
 	return (0);
 }
