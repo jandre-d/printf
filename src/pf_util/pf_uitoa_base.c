@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 14:09:36 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 17:19:08 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:36:43 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-char			*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len,
+char			*pf_uitoa_base(uint64_t value, int8_t base, t_conversion_out *c_out,
 	bool lowercase)
 {
 	char	*to_return;
@@ -23,7 +23,7 @@ char			*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len,
 		return (NULL);
 	character_set = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
 	i = pf_uintlen(value, base);
-	*len = i;
+	c_out->len = i;
 	to_return = TAKE_MULTI(char, i + 1, "ft_itoa_base");
 	if (to_return == NULL)
 		return (NULL);

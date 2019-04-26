@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:16:37 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:41:00 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ char	*pf_memcpy(char *dst, char *src, size_t n);
 char	*pf_memmove(char *dst, char *src, size_t len);
 char	*pf_memset(char *str, char value, int32_t n);
 int8_t	pf_uintlen(uint64_t value, uint8_t base);
-char	*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len, bool lowercase);
+char	*pf_uitoa_base(uint64_t value, int8_t base, t_conversion_out *c_out,
+	bool lowercase);
 int		wchar_byte_count(int wchar);
 char	*pf_wchar_to_str(int wchar, int *size);
 char	*pf_wstr_to_str(int *wstr, int *size, int precision);
