@@ -6,11 +6,26 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 17:20:30 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 17:22:52 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 19:17:55 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
+
+bool	pf_prepend_to_c_out(t_conversion_out *c_out, char *str, int32_t len)
+{
+	char *new_str;
+
+	new_str = TAKE_MULTI(char, c_out->len + len + 1, "pf_prepend_to_c_out");
+	if (new_str == NULL)
+		return (false);
+	pf_memcpy(new_str, str, len);
+	pf_memcpy(new_str + len, c_out->str, c_out->len);
+	c_out->len += len;
+	GIVE(c_out->str, "pf_prepend_to_c_out");
+	c_out->str = new_str;
+	return (true);
+}
 
 bool	pf_prepend(t_pf_output *output, char *str, size_t str_len, bool free_str)
 {
@@ -20,7 +35,7 @@ bool	pf_prepend(t_pf_output *output, char *str, size_t str_len, bool free_str)
 	if (output->str_useage + str_len > output->str_size - 1)
 	{
 		temp_size = output->str_useage + str_len + 50;
-		new_output_str = TAKE_MULTI(char, temp_size, "pf_prepend");
+		new_output_str = TAKE_MULTI(char, temp_size + 1, "pf_prepend");
 		if (new_output_str == NULL)
 			return (false);
 		pf_memcpy(new_output_str, str, str_len);

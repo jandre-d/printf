@@ -6,20 +6,20 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 13:56:47 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 13:57:36 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 17:59:02 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-static inline int	wstr_size(int *wstr)
+static inline int	wstr_n_size(int *wstr, int32_t wchar_count_max)
 {
 	int i;
 	int size;
 
 	i = 0;
 	size = 0;
-	while (wstr[i])
+	while (wstr[i] && i < wchar_count_max)
 	{
 		size += wchar_byte_count(wstr[i]);
 		i++;
@@ -27,26 +27,16 @@ static inline int	wstr_size(int *wstr)
 	return (size);
 }
 
-static inline int	wstr_len(int *wstr)
-{
-	int i;
-
-	i = 0;
-	while (wstr[i])
-		i++;
-	return (i);
-}
-
-char				*pf_wstr_to_str(int *wstr, int *size)
+char				*pf_wstr_to_str(int *wstr, int *size, int precision)
 {
 	char	*str;
 	int		i;
 	int		add_size;
 	char	*add;
 
-	str = ft_strnew(wstr_size(wstr));
+	str = ft_strnew(wstr_n_size(wstr, precision));
 	i = 0;
-	while (wstr[i])
+	while (wstr[i] && i < precision)
 	{
 		add = pf_wchar_to_str(wstr[i], &add_size);
 		pf_memcpy(str + *size, add, add_size);

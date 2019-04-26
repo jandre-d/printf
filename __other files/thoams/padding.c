@@ -6,7 +6,7 @@
 /*   By: twoerdem <twoerdem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/10 17:22:47 by twoerdem       #+#    #+#                */
-/*   Updated: 2019/04/25 15:49:24 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 18:16:44 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	zero_padding(t_conversion_out *res, t_conversion_in *inp)
 		}
 	}
 	if (inp->conversion_type != 'i' && inp->conversion_type != 'd' &&\
-	inp->mod_hash == true)
+	inp->flag_hash == true)
 	{
 		if (inp->conversion_type == 'o')
 		{
@@ -93,7 +93,7 @@ int		main(void)
 	res->len = ft_strlen(res->str);
 	inp->flag_0 = true;
 	inp->conversion_type = 'x';
-	inp->mod_hash = false;
+	inp->flag_hash = false;
 	ft_putchar('\'');
 	padding(res, inp);
 	ft_putchar('\'');

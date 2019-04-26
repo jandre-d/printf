@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 17:22:01 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 16:40:02 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int64_t	n_till_instruction(char *str)
 		n++;
 	}
 	return (n);
-}	
+}
 
 static void loop(char *str, va_list *argl, t_pf_output *output)
 {

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 17:37:34 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 18:16:44 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static inline bool set_flag_and_mod(char **str, t_conversion_in *c_in)
 			(**str == '-' && (c_in->flag_min = true)) ||
 			(**str == '+' && (c_in->flag_plus = true)) ||
 			(**str == ' ' && (c_in->flag_space = true)) ||
-			(**str == '#' && (c_in->mod_hash = true)) ||
+			(**str == '#' && (c_in->flag_hash = true)) ||
 			(**str == 'h' && (c_in->mod_h = true)) ||
 			(**str == 'l' && (c_in->mod_l = true)) ||
 			(**str == 'L' && (c_in->mod_L = true)) ||

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 20:53:19 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 17:31:36 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 20:11:00 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 #include "libft/libft.h"
 #include <stdint.h>
 #include <stdlib.h>
-
-
-
 /*
          `#'          For o conversions, the precision of the num-
                       ber is increased to force the first character of the
@@ -36,8 +33,9 @@
                       point appears in the results of those conversions only
                       if a digit follows).
 
-         `0' (zero)   For (s, c, p) conversions the converted value is padded on the left with zeros rather
-                      than blanks.
+         `0' (zero)   For all conversions except n, the converted value is padded on
+                      the left with zeros rather than blanks.  If a precision is given with a
+                      numeric conversion (d, i, o, u, i, x, and X), the 0 flag is ignored.
 
          `-'          the converted value is padded on the right
                       with blanks, rather than on the left with blanks or
@@ -45,21 +43,28 @@
 					  - overrides a 0 if both are given.
 
          ` ' (space)  A blank should be left before a positive number produced
-                      by a signed conversion diouxX and f
+                      by a signed conversion and d f i
 
          `+'          A sign must always be placed before a number produced by
-                      a signed conversion.
+                      a signed conversion. d f i
 					  + overrides a space
 
 */
 // #0-+ and space
 int main()
 {
-	double x = 23245;
+	float x = -22;
+	   printf("\"%#+8.0f\"\n", x);
+	ft_printf("\"%#+8.0f\"\n", x);
 
-	//printf("%#.8lf", x);
-	printf("%-20s", "hello");
+	   printf("\"%0+8.0f\"\n", x);
+	ft_printf("\"%0+8.0f\"\n", x);
 
+	   printf("\"% 8f\"\n", x);
+	ft_printf("\"% 8f\"\n", x);
+
+	    printf("\"%+10f\"\n", x);
+	ft_printf("\"%+10f\"\n", x);
 
 	return (0);
 }

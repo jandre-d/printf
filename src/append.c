@@ -6,11 +6,26 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:47:59 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 17:22:46 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 19:18:30 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
+
+bool	pf_append_to_c_out(t_conversion_out *c_out, char *str, int32_t len)
+{
+	char *new_str;
+
+	new_str = TAKE_MULTI(char, c_out->len + len + 1, "pf_append_to_c_out");
+	if (new_str == NULL)
+		return (false);
+	pf_memcpy(new_str, c_out->str, c_out->len);
+	pf_memcpy(new_str + c_out->len, str, len);
+	c_out->len += len;
+	GIVE(c_out->str, "pf_append_to_c_out");
+	c_out->str = new_str;
+	return (true);
+}
 
 bool	pf_append(t_pf_output *output, char *str, size_t str_len, bool free_str)
 {

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 16:03:56 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 18:04:48 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	set_null_text(t_conversion_out *c_out)
 	return (true);
 }
 
-bool	for_str(t_conversion_out *c_out, va_list *argl)
+bool	for_str(t_conversion_out *c_out, va_list *argl, int precision)
 {
 	char *str;
 
@@ -32,6 +32,9 @@ bool	for_str(t_conversion_out *c_out, va_list *argl)
 	if (str == NULL)
 		return(set_null_text(c_out));
 	c_out->len = ft_strlen(str);
+	if (precision > 0)
+		if (c_out->len > precision)
+			c_out->len = precision;
 	c_out->str = TAKE_MULTI(char, c_out->len + 1, "pf_s");
 	if (c_out->str == NULL)
 		return (false);
@@ -39,14 +42,14 @@ bool	for_str(t_conversion_out *c_out, va_list *argl)
 	return (true);
 }
 
-bool	for_wstr(t_conversion_out *c_out, va_list *argl)
+bool	for_wstr(t_conversion_out *c_out, va_list *argl, int precision)
 {
 	int *wstr;
 
 	wstr = va_arg(*argl, int *);
 	if (wstr == NULL)
 		return (set_null_text(c_out));
-	c_out->str = pf_wstr_to_str(wstr, &c_out->len);
+	c_out->str = pf_wstr_to_str(wstr, &c_out->len, precision);
 	if (c_out->str == NULL)
 		return (false);
 	return (true);
@@ -56,10 +59,10 @@ bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
 	if (c_in->mod_l)
 	{
-		return (for_wstr(c_out, argl));
+		return (for_wstr(c_out, argl, c_in->precision) && padding_general(c_in, c_out, false));
 	}
 	else
 	{
-		return (for_str(c_out, argl));
+		return (for_str(c_out, argl, c_in->precision) && padding_general(c_in, c_out, false));
 	}
 }

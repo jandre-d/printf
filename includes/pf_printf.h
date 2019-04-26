@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 17:22:15 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 19:50:04 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct	s_conversion_input
 	bool		mod_l;
 	bool		mod_ll;
 	bool		mod_L;
-	bool		mod_hash;
+	bool		flag_hash;
 	bool		flag_0;
 	bool		flag_min;
 	bool		flag_plus;
@@ -55,7 +55,6 @@ typedef struct	s_ldbltoa_vars
 	int64_t	integer_part;
 	int64_t	decimal_part;
 	int32_t	decimal_part_leading_zeros;
-	bool	is_negative;
 	int32_t len;
 	char 	*to_return;
 }				t_ldbltoa_vars;
@@ -74,19 +73,27 @@ bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 /*util*/
 int64_t pf_10_power_n(int32_t n);
 int8_t	pf_intlen(int64_t value, uint8_t base);
-char	*pf_itoa_base(int64_t value, int8_t base, int32_t *len, bool lowercase);
-char	*pf_ldtoa(long double nbr, int32_t precision, int32_t *len);
+char	*pf_itoa_base(int64_t value, int8_t base,
+	t_conversion_out *c_out, bool lowercase);
+char	*pf_ldtoa(long double nbr, int32_t precision,
+	t_conversion_out *c_out);
 char	*pf_memcpy(char *dst, char *src, size_t n);
 char	*pf_memmove(char *dst, char *src, size_t len);
+char	*pf_memset(char *str, char value, int32_t n);
 int8_t	pf_uintlen(uint64_t value, uint8_t base);
 char	*pf_uitoa_base(uint64_t value, int8_t base, int32_t *len, bool lowercase);
 int		wchar_byte_count(int wchar);
 char	*pf_wchar_to_str(int wchar, int *size);
-char	*pf_wstr_to_str(int *wstr, int *size);
-
+char	*pf_wstr_to_str(int *wstr, int *size, int precision);
 /* src other */
 bool read_instruction(char **str, t_conversion_in *c_in);
 bool	pf_append(t_pf_output *output, char *str, size_t str_len, bool free_str);
 bool	pf_prepend(t_pf_output *output, char *str, size_t str_len, bool free_str);
+bool	padding(t_conversion_out *c_out, char padd_char, bool padd_left,
+	int32_t min_width);
+bool	padding_general(t_conversion_in *c_in, t_conversion_out *c_out,
+	bool ignore_zero_flag);
+bool	pf_prepend_to_c_out(t_conversion_out *c_out, char *str, int32_t len);
+bool	pf_append_to_c_out(t_conversion_out *c_out, char *str, int32_t len);
 
 #endif

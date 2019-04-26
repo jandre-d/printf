@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:42:11 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 17:19:36 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 19:53:15 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,20 @@ static inline void	max_negative_value_case(int64_t *value, int8_t *i,
 }
 
 char				*pf_itoa_base(int64_t value, int8_t base,
-	int32_t *len, bool lowercase)
+	t_conversion_out *c_out, bool lowercase)
 {
 	char	*to_return;
 	char	*character_set;
 	int8_t	i;
-	bool	is_negative;
 
 	if (base < 2 || base > 16)
 		return (NULL);
-	is_negative = value < 0;
+	c_out->is_negative = value < 0;
 	character_set = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
 	i = pf_intlen(value, base);
-	*len = i;
+	if (c_out->is_negative)
+		i--;
+	c_out->len = i;
 	to_return = TAKE_MULTI(char, i + 1, "pf_itoa_base");
 	if (to_return == NULL)
 		return (NULL);
@@ -53,7 +54,7 @@ char				*pf_itoa_base(int64_t value, int8_t base,
 		value /= base;
 		i--;
 	}
-	if (is_negative)
-		to_return[0] = '-';
+	// if (c_out->is_negative)
+	// 	to_return[0] = '-';
 	return (to_return);
 }

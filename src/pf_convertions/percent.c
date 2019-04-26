@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:47:24 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 18:10:39 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 17:05:41 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
 	c_out->len = 1;
 	c_out->str = TAKE_MULTI(char, 2, "pf_s");
+	if (c_out->str == NULL)
+		return (false);
 	c_out->str[0] = '%';
-	return (true);
+	return (padding_general(c_in, c_out, false));
 }

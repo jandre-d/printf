@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/22 17:18:58 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/26 19:33:03 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,29 @@ static inline void		to_string(t_ldbltoa_vars *vars)
 		vars->integer_part /= 10;
 		vars->len--;
 	}
-	if (vars->is_negative)
-		vars->to_return[0] = '-';
 }
 
 char					*pf_ldtoa(long double nbr, int32_t precision,
-	int32_t *len)
+	t_conversion_out *c_out)
 {
 	t_ldbltoa_vars vars;
 
 	ft_memset((void *)&vars, 0, sizeof(t_ldbltoa_vars));
-	vars.is_negative = nbr < 0 ? true : false;
+	c_out->is_negative = nbr < 0 ? true : false;
 	nbr = nbr < 0 ? -nbr : nbr;
 	if (precision > 0)
 	{
+		c_out->has_decimal = true;
 		vars.integer_part = (int64_t)nbr;
 		vars.decimal_part = round_decimal_part(nbr, precision, &vars);
-		vars.len = pf_intlen(vars.integer_part, 10) + 1 + precision +
-			vars.is_negative;
+		vars.len = pf_intlen(vars.integer_part, 10) + 1 + precision;
 	}
 	else
 	{
 		vars.integer_part = round_int_part(nbr);
-		vars.len = pf_intlen(vars.integer_part, 10) + vars.is_negative;
+		vars.len = pf_intlen(vars.integer_part, 10) + c_out->is_negative;
 	}
-	*len = vars.len;
+	c_out->len = vars.len;
 	vars.to_return = TAKE_MULTI(char, vars.len + 1, "pf_ldbltoa");
 	if (vars.to_return == NULL)
 		return (NULL);
