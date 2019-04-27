@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:17:58 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/27 20:29:22 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ static inline bool set_conversion(char **str, t_conversion_in *c_in)
 		**str == 'X' ||
 		**str == 'x' ||
 		**str == 'f' ||
+		**str == 'r' ||
+		**str == 'b' ||
+		**str == 'j' ||
 		**str == '%')
 		{
 			c_in->conversion_type = **str;

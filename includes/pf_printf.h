@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:49:21 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:41:00 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/27 20:28:13 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ bool	pf_p(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out,
 	va_list *argl);
 bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
-
+bool	pf_r(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
+bool	pf_b(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
+bool	pf_j(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl);
 
 /*util*/
 int64_t pf_10_power_n(int32_t n);

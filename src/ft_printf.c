@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 16:40:02 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/27 20:36:10 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ static inline bool do_instruction(t_conversion_in *c_in,
 	(c_in->conversion_type == 'X' && pf_ouxX(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'x' && pf_ouxX(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'f' && pf_f(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'b' && pf_b(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'r' && pf_r(c_in, c_out, argl)) ||
+	(c_in->conversion_type == 'j' && pf_j(c_in, c_out, argl)) ||
 	(c_in->conversion_type == '%' && pf_percent(c_in, c_out, argl)));
 }
 

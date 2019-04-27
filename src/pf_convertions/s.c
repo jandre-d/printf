@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 18:04:48 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/27 19:19:40 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,25 @@ bool	for_wstr(t_conversion_out *c_out, va_list *argl, int precision)
 
 bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
-	if (c_in->mod_l)
+	if (c_in->precision_default == false && c_in->precision == 0)
 	{
-		return (for_wstr(c_out, argl, c_in->precision) && padding_general(c_in, c_out, false));
+		c_out->str = TAKE(char, "pf_s");
+		c_out->len = 0;
+	}
+	else if (c_in->mod_l)
+	{
+		if (c_in->precision_default)
+		{
+			if (for_wstr(c_out, argl, __INT32_MAX__) == false)
+			return (false);
+		}
+		else
+			if (for_wstr(c_out, argl, c_in->precision) == false)
+				return (false);
 	}
 	else
 	{
-		return (for_str(c_out, argl, c_in->precision) && padding_general(c_in, c_out, false));
+		for_str(c_out, argl, c_in->precision);
 	}
+	return (padding_general(c_in, c_out, false));
 }
