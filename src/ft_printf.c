@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 14:12:51 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 14:35:42 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static inline bool		do_instruction(t_conversion_in *c_in,
 	(c_in->conversion_type == 'b' && pf_b(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'r' && pf_r(c_in, c_out, argl)) ||
 	(c_in->conversion_type == 'j' && pf_j(c_in, c_out, argl)) ||
-	(c_in->conversion_type == '%' && pf_percent(c_in, c_out, argl)));
+	(c_in->conversion_type == '%' && pf_percent(c_in, c_out)));
 }
 
 static inline int64_t	n_till_instruction(char *str)
@@ -44,7 +44,7 @@ static inline int64_t	n_till_instruction(char *str)
 	return (n);
 }
 
-static inline bool		start_instruction(t_conversion_out *c_in,
+static inline bool		start_instruction(t_conversion_in *c_in,
 	t_conversion_out *c_out, va_list *argl, t_pf_output *output)
 {
 	if (do_instruction(c_in, c_out, argl))
@@ -80,6 +80,7 @@ static inline bool		loop(char *str, va_list *argl, t_pf_output *output)
 			return (true);
 		str++;
 	}
+	return (true);
 }
 
 int						ft_printf(const char *format, ...)

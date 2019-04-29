@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 15:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:47:36 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 14:34:17 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static inline bool	flags_and_mods(t_conversion_in *c_in,
 	return (true);
 }
 
-void				set_base_and_convert(t_conversion_in *c_in, uint8_t *base)
+static inline void	set_base(t_conversion_in *c_in, int8_t *base)
 {
 	if (c_in->conversion_type == 'o')
 		*base = 8;
@@ -42,36 +42,38 @@ void				set_base_and_convert(t_conversion_in *c_in, uint8_t *base)
 		*base = 16;
 }
 
-bool				set_value(t_conversion_in *c_in, uint64_t *value,
+static inline void	set_value(t_conversion_in *c_in, uint64_t *value,
 	va_list *argl)
 {
-	if ((c_in->mod_hh && ((value = (unsigned char)va_arg(*argl, unsigned int))
+	if ((c_in->mod_hh && ((*value = (unsigned char)va_arg(*argl, unsigned int))
 		|| 1)) ||
-	(c_in->mod_h && ((value = (unsigned short)va_arg(*argl, unsigned int))
+	(c_in->mod_h && ((*value = (unsigned short)va_arg(*argl, unsigned int))
 		|| 1)) ||
-	(c_in->mod_l && ((value = va_arg(*argl, unsigned long)) || 1)) ||
-	(c_in->mod_ll && ((value = va_arg(*argl, unsigned long long)) || 1)) ||
-	((value = va_arg(*argl, unsigned int)) || 1))
+	(c_in->mod_l && ((*value = va_arg(*argl, unsigned long)) || 1)) ||
+	(c_in->mod_ll && ((*value = va_arg(*argl, unsigned long long)) || 1)) ||
+	((*value = va_arg(*argl, unsigned int)) || 1))
 		;
 }
 
-bool				do_prepends(t_conversion_in *c_in, t_conversion_out *c_out,
+static inline bool	do_prepends(t_conversion_in *c_in, t_conversion_out *c_out,
 	bool *not_zero, bool res_empty)
 {
 	if (c_out->str == NULL)
 		return (false);
-	not_zero = c_out->str[0] != '0';
+	*not_zero = c_out->str[0] != '0';
 	if (padding(c_out, '0', true, c_in->precision) == false)
 		return (false);
-	if (c_in->flag_hash && not_zero)
+	if (c_in->flag_hash && *not_zero)
 	{
-		if (c_in->conversion_type == 'X' && res_empty == false)
-			pf_prepend_to_c_out(c_out, "0X", 2);
-		else if (c_in->conversion_type == 'x' && res_empty == false)
-			pf_prepend_to_c_out(c_out, "0x", 2);
-		else if (c_in->conversion_type == 'o' && c_out->str[0] != '0')
-			pf_prepend_to_c_out(c_out, "0", 1);
+		return (
+		(c_in->conversion_type == 'X' && res_empty == false &&
+			pf_prepend_to_c_out(c_out, "0X", 2)) ||
+		(c_in->conversion_type == 'x' && res_empty == false &&
+			pf_prepend_to_c_out(c_out, "0x", 2)) ||
+		(c_in->conversion_type == 'o' && c_out->str[0] != '0' &&
+			pf_prepend_to_c_out(c_out, "0", 1)));
 	}
+	return (true);
 }
 
 bool				pf_ouxx(t_conversion_in *c_in, t_conversion_out *c_out,
