@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 17:20:30 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 19:17:55 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:58:16 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ bool	pf_prepend_to_c_out(t_conversion_out *c_out, char *str, int32_t len)
 	return (true);
 }
 
-bool	pf_prepend(t_pf_output *output, char *str, size_t str_len, bool free_str)
+bool	pf_prepend(t_pf_output *output, char *str, size_t str_len,
+	bool free_str)
 {
-	char *new_output_str;
-	size_t temp_size;
-	
+	char	*new_output_str;
+	size_t	temp_size;
+
 	if (output->str_useage + str_len > output->str_size - 1)
 	{
 		temp_size = output->str_useage + str_len + 50;

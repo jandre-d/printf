@@ -6,14 +6,14 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 14:09:36 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:36:43 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:49:03 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-char			*pf_uitoa_base(uint64_t value, int8_t base, t_conversion_out *c_out,
-	bool lowercase)
+char			*pf_uitoa_base(uint64_t value, int8_t base,
+	t_conversion_out *c_out, bool lowercase)
 {
 	char	*to_return;
 	char	*character_set;

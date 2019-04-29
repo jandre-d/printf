@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ouxX.c                                             :+:    :+:            */
+/*   ouxx.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 15:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/27 19:57:58 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:47:36 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-static inline bool flags_and_mods(t_conversion_in *c_in, t_conversion_out *c_out)
+static inline bool	flags_and_mods(t_conversion_in *c_in,
+	t_conversion_out *c_out)
 {
 	if (c_in->precision_default == false)
 		c_in->flag_0 = false;
@@ -27,44 +28,36 @@ static inline bool flags_and_mods(t_conversion_in *c_in, t_conversion_out *c_out
 			return (false);
 	}
 	if (padding_general(c_in, c_out, false) == false)
-			return (false);
+		return (false);
 	return (true);
 }
 
-bool	pf_ouxX(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+void				set_base_and_convert(t_conversion_in *c_in, uint8_t *base)
 {
-	uint64_t value;
-	int8_t	base;
-	bool	lowercase;
-	bool	res_empty;
-	bool	not_zero;
-
-	res_empty = false;
-	lowercase = c_in->conversion_type != 'X';
 	if (c_in->conversion_type == 'o')
-		base = 8;
+		*base = 8;
 	else if (c_in->conversion_type == 'u')
-		base = 10;
+		*base = 10;
 	else
-		base = 16;
-	if (
-		(c_in->mod_hh && ((value = (unsigned char)va_arg(*argl, unsigned int)) || 1)) ||
-		(c_in->mod_h && ((value = (unsigned short)va_arg(*argl, unsigned int)) || 1)) ||
-		(c_in->mod_l && ((value = va_arg(*argl, unsigned long)) || 1)) ||
-		(c_in->mod_ll && ((value = va_arg(*argl, unsigned long long)) || 1)) ||
-		((value = va_arg(*argl, unsigned int)) || 1)
-	)
-	;
-	if (value == 0 && c_in->precision_default == false && c_in->precision == 0)
-	{
-		res_empty = true;
-		c_out->str = TAKE(char, "pf_di");
-		if (c_out->str == NULL)
-			return (false);
-		c_out->len = 0;
-	}
-	else
-		c_out->str = pf_uitoa_base(value, base, c_out, lowercase);
+		*base = 16;
+}
+
+bool				set_value(t_conversion_in *c_in, uint64_t *value,
+	va_list *argl)
+{
+	if ((c_in->mod_hh && ((value = (unsigned char)va_arg(*argl, unsigned int))
+		|| 1)) ||
+	(c_in->mod_h && ((value = (unsigned short)va_arg(*argl, unsigned int))
+		|| 1)) ||
+	(c_in->mod_l && ((value = va_arg(*argl, unsigned long)) || 1)) ||
+	(c_in->mod_ll && ((value = va_arg(*argl, unsigned long long)) || 1)) ||
+	((value = va_arg(*argl, unsigned int)) || 1))
+		;
+}
+
+bool				do_prepends(t_conversion_in *c_in, t_conversion_out *c_out,
+	bool *not_zero, bool res_empty)
+{
 	if (c_out->str == NULL)
 		return (false);
 	not_zero = c_out->str[0] != '0';
@@ -79,5 +72,31 @@ bool	pf_ouxX(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 		else if (c_in->conversion_type == 'o' && c_out->str[0] != '0')
 			pf_prepend_to_c_out(c_out, "0", 1);
 	}
+}
+
+bool				pf_ouxx(t_conversion_in *c_in, t_conversion_out *c_out,
+	va_list *argl)
+{
+	uint64_t	value;
+	int8_t		base;
+	bool		lowercase;
+	bool		res_empty;
+	bool		not_zero;
+
+	res_empty = false;
+	lowercase = c_in->conversion_type != 'X';
+	set_base(c_in, &base);
+	set_value(c_in, &value, argl);
+	if (value == 0 && c_in->precision_default == false && c_in->precision == 0)
+	{
+		res_empty = true;
+		c_out->str = TAKE(char, "pf_di");
+		if (c_out->str == NULL)
+			return (false);
+		c_out->len = 0;
+	}
+	else
+		c_out->str = pf_uitoa_base(value, base, c_out, lowercase);
+	do_prepends(c_in, c_out, &not_zero, res_empty);
 	return (flags_and_mods(c_in, c_out));
 }

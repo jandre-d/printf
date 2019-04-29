@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/13 14:21:35 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 20:30:48 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:52:00 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static inline int64_t	round_decimal_part(double nbr, int32_t precision,
 
 static inline void		to_string(t_ldbltoa_vars *vars)
 {
-	vars->len--;
 	while (vars->decimal_part > 0)
 	{
 		vars->to_return[vars->len] = vars->decimal_part % 10 + '0';
@@ -104,6 +103,7 @@ char					*pf_ldtoa(long double nbr, int32_t precision,
 	vars.to_return = TAKE_MULTI(char, vars.len + 1, "pf_ldbltoa");
 	if (vars.to_return == NULL)
 		return (NULL);
+	vars.len--;
 	to_string(&vars);
 	return (vars.to_return);
 }

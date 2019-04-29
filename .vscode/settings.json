@@ -3,6 +3,7 @@
 		"read_instruction.h": "c",
 		"conversions.h": "c",
 		"unistd.h": "c",
-		"pf_printf.h": "c"
+		"pf_printf.h": "c",
+		"stdbool.h": "c"
 	}
 }

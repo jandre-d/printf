@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/18 16:47:59 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 19:18:30 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:59:52 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	pf_append_to_c_out(t_conversion_out *c_out, char *str, int32_t len)
 {
-	char *new_str;
+	char	*new_str;
 
 	new_str = TAKE_MULTI(char, c_out->len + len + 1, "pf_append_to_c_out");
 	if (new_str == NULL)
@@ -27,11 +27,12 @@ bool	pf_append_to_c_out(t_conversion_out *c_out, char *str, int32_t len)
 	return (true);
 }
 
-bool	pf_append(t_pf_output *output, char *str, size_t str_len, bool free_str)
+bool	pf_append(t_pf_output *output, char *str, size_t str_len,
+	bool free_str)
 {
-	char *new_output_str;
-	size_t temp_size;
-	
+	char	*new_output_str;
+	size_t	temp_size;
+
 	if (output->str_useage + str_len > output->str_size - 1)
 	{
 		temp_size = output->str_useage + str_len + 50;

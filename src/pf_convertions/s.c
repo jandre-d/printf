@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/27 19:19:40 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:28:44 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 bool	set_null_text(t_conversion_out *c_out)
 {
-	char *nul = "(null)";
-	
+	char *nul;
+
+	nul = "(null)";
 	c_out->len = 6;
 	c_out->str = TAKE_MULTI(char, 7, "pf_s");
 	if (c_out->str == NULL)
@@ -30,7 +31,7 @@ bool	for_str(t_conversion_out *c_out, va_list *argl, int precision)
 
 	str = va_arg(*argl, char *);
 	if (str == NULL)
-		return(set_null_text(c_out));
+		return (set_null_text(c_out));
 	c_out->len = ft_strlen(str);
 	if (precision > 0)
 		if (c_out->len > precision)
@@ -67,11 +68,10 @@ bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 		if (c_in->precision_default)
 		{
 			if (for_wstr(c_out, argl, __INT32_MAX__) == false)
-			return (false);
-		}
-		else
-			if (for_wstr(c_out, argl, c_in->precision) == false)
 				return (false);
+		}
+		else if (for_wstr(c_out, argl, c_in->precision) == false)
+			return (false);
 	}
 	else
 	{

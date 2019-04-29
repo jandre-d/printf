@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/27 20:16:39 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/27 20:36:30 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:27:40 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-static inline void rot_str(char *rot_str, int32_t offset)
+static inline void	rot_str(char *rot_str, int32_t offset)
 {
 	int32_t i;
 
@@ -26,10 +26,11 @@ static inline void rot_str(char *rot_str, int32_t offset)
 	}
 }
 
-bool pf_j(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+bool				pf_j(t_conversion_in *c_in, t_conversion_out *c_out,
+	va_list *argl)
 {
-	int32_t len;
-	char *str_in;
+	int32_t	len;
+	char	*str_in;
 
 	str_in = va_arg(*argl, char *);
 	if (str_in == NULL)

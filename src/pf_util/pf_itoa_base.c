@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:42:11 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/26 19:53:15 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:48:35 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,5 @@ char				*pf_itoa_base(int64_t value, int8_t base,
 		value /= base;
 		i--;
 	}
-	// if (c_out->is_negative)
-	// 	to_return[0] = '-';
 	return (to_return);
 }

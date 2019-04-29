@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/22 21:26:20 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/25 14:17:30 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 13:49:21 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-static inline void pf_wchar_to_str_size_4(int wchar, char *to_return)
+static inline void	pf_wchar_to_str_size_4(int wchar, char *to_return)
 {
 	to_return[3] = (char)(0x80 | (wchar & 0x3F));
 	to_return[2] = (char)(0x80 | ((wchar >> 6) & 0x3F));
