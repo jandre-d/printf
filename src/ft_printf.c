@@ -6,11 +6,11 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 17:43:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 19:48:31 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pf_printf.h"
+#include "ft_printf.h"
 
 static inline bool		do_instruction(t_conversion_in *c_in,
 	t_conversion_out *c_out, va_list *argl)
@@ -54,7 +54,7 @@ static inline bool		start_instruction(t_conversion_in *c_in,
 }
 
 /*
-** read_instruction() will always increase the str* by at least one
+** pf_read_instruction() will always increase the str* by at least one
 */
 
 static inline bool		loop(char *str, va_list *argl, t_pf_output *output)
@@ -73,7 +73,7 @@ static inline bool		loop(char *str, va_list *argl, t_pf_output *output)
 		str += till_instruction;
 		if (*str == '\0')
 			return (true);
-		if (read_instruction(&str, &c_in) == false)
+		if (pf_read_instruction(&str, &c_in) == false)
 			continue;
 		if (start_instruction(&c_in, &c_out, argl, output) == false)
 			return (false);

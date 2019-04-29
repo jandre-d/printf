@@ -6,11 +6,11 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:47:24 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 17:24:07 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 19:48:31 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pf_printf.h"
+#include "ft_printf.h"
 
 bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out)
 {
@@ -19,5 +19,5 @@ bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out)
 	if (c_out->str == NULL)
 		return (false);
 	c_out->str[0] = '%';
-	return (padding_general(c_in, c_out, false));
+	return (pf_padding_general(c_in, c_out, false));
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   read_instruction.c                                 :+:    :+:            */
+/*   pf_read_instruction.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 15:51:17 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 19:50:44 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pf_printf.h"
+#include "ft_printf.h"
 
 static inline bool		set_conversion(char **str, t_conversion_in *c_in)
 {
@@ -119,7 +119,7 @@ static inline bool		set_flag_and_mod(char **str, t_conversion_in *c_in)
 ** the first character in str should be a '%'
 */
 
-bool					read_instruction(char **str, t_conversion_in *c_in)
+bool					pf_read_instruction(char **str, t_conversion_in *c_in)
 {
 	c_in->precision_default = true;
 	if (**str != '\0')

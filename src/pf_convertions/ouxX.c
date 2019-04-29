@@ -6,11 +6,11 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 15:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 17:29:54 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 19:48:31 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pf_printf.h"
+#include "ft_printf.h"
 
 static inline bool	flags_and_mods(t_conversion_in *c_in,
 	t_conversion_out *c_out)
@@ -20,14 +20,14 @@ static inline bool	flags_and_mods(t_conversion_in *c_in,
 	if ((c_in->flag_plus) && c_in->flag_0)
 		c_in->padding -= 1;
 	if (c_in->flag_0)
-		if (padding_general(c_in, c_out, false) == false)
+		if (pf_padding_general(c_in, c_out, false) == false)
 			return (false);
 	if (c_in->flag_plus && c_in->conversion_type != 'o')
 	{
 		if (pf_prepend_to_c_out(c_out, "+", 1) == false)
 			return (false);
 	}
-	if (padding_general(c_in, c_out, false) == false)
+	if (pf_padding_general(c_in, c_out, false) == false)
 		return (false);
 	return (true);
 }
@@ -61,7 +61,7 @@ static inline bool	do_prepends(t_conversion_in *c_in, t_conversion_out *c_out,
 	if (c_out->str == NULL)
 		return (false);
 	*not_zero = c_out->str[0] != '0';
-	if (padding(c_out, '0', true, c_in->precision) == false)
+	if (pf_padding(c_out, '0', true, c_in->precision) == false)
 		return (false);
 	if (c_in->flag_hash && *not_zero)
 	{
