@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 17:18:57 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:43:42 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ static inline bool		start_instruction(t_conversion_in *c_in,
 		return (false);
 }
 
+/*
+** read_instruction() will always increase the str* by at least one
+*/
+
 static inline bool		loop(char *str, va_list *argl, t_pf_output *output)
 {
 	t_conversion_in		c_in;
@@ -70,7 +74,7 @@ static inline bool		loop(char *str, va_list *argl, t_pf_output *output)
 		if (*str == '\0')
 			return (true);
 		if (read_instruction(&str, &c_in) == false)
-			return (false);
+			continue;
 		if (start_instruction(&c_in, &c_out, argl, output) == false)
 			return (false);
 		if (*str == '\0')
@@ -85,17 +89,17 @@ int						ft_printf(const char *format, ...)
 	va_list		argl;
 	t_pf_output	output;
 
-	output.str = TAKE(char, "ft_printf");
+	output.str = ft_strnew(0);
 	output.str_size = 1;
 	output.str_useage = 0;
 	va_start(argl, format);
 	if (loop((char *)format, &argl, &output) == false)
 	{
-		GIVE(output.str, "ft_printf");
+		ft_memdel((void **)&output.str);
 		return (-1);
 	}
 	va_end(argl);
 	write(1, output.str, output.str_useage);
-	GIVE(output.str, "ft_printf");
+	ft_memdel((void **)&output.str);
 	return (output.str_useage);
 }

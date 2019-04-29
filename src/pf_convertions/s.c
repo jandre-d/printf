@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 16:04:11 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:29:52 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static bool	set_null_text(t_conversion_out *c_out)
 
 	nul = "(null)";
 	c_out->len = 6;
-	c_out->str = TAKE_MULTI(char, 7, "pf_s");
+	c_out->str = ft_strnew(6);
 	if (c_out->str == NULL)
 		return (false);
 	pf_memcpy(c_out->str, nul, c_out->len);
@@ -36,7 +36,7 @@ static bool	for_str(t_conversion_out *c_out, va_list *argl, int precision)
 	if (precision > 0)
 		if (c_out->len > precision)
 			c_out->len = precision;
-	c_out->str = TAKE_MULTI(char, c_out->len + 1, "pf_s");
+	c_out->str = ft_strnew(c_out->len);
 	if (c_out->str == NULL)
 		return (false);
 	pf_memcpy(c_out->str, str, c_out->len);
@@ -60,7 +60,7 @@ bool		pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
 	if (c_in->precision_default == false && c_in->precision == 0)
 	{
-		c_out->str = TAKE(char, "pf_s");
+		c_out->str = ft_strnew(0);
 		c_out->len = 0;
 	}
 	else if (c_in->mod_l)

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/27 20:16:39 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 16:03:22 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:23:52 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static inline bool	set_null_text(t_conversion_out *c_out)
 
 	nul = "(null)";
 	c_out->len = 6;
-	c_out->str = TAKE_MULTI(char, 7, "pf_s");
+	c_out->str = ft_strnew(6);
 	if (c_out->str == NULL)
 		return (false);
 	pf_memcpy(c_out->str, nul, c_out->len);
@@ -49,7 +49,7 @@ bool				pf_j(t_conversion_in *c_in, t_conversion_out *c_out,
 	if (str_in == NULL)
 		return (set_null_text(c_out));
 	len = ft_strlen(str_in);
-	c_out->str = TAKE_MULTI(char, len + 1, "pf_j");
+	c_out->str = ft_strnew(len);
 	if (c_out->str == NULL)
 		return (false);
 	c_out->len = len;

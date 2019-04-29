@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 15:07:22 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:28:32 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:29:55 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool				pf_di(t_conversion_in *c_in, t_conversion_out *c_out,
 		;
 	if (value == 0 && c_in->precision_default == false && c_in->precision == 0)
 	{
-		c_out->str = TAKE(char, "pf_di");
+		c_out->str = ft_strnew(0);
 		c_out->len = 0;
 	}
 	else

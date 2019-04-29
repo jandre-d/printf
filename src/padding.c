@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/26 13:40:46 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:55:55 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:32:42 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ bool	padding(t_conversion_out *c_out, char padd_char, bool padd_left,
 
 	if (c_out->len >= min_width)
 		return (true);
-	new_str = TAKE_MULTI(char, min_width, "padding");
+	new_str = ft_strnew(min_width);
 	pf_memset(new_str, padd_char, min_width);
 	if (padd_left)
 		pf_memcpy(new_str + (min_width - c_out->len), c_out->str, c_out->len);
 	else
 		pf_memcpy(new_str, c_out->str, c_out->len);
-	GIVE(c_out->str, "padding");
+	ft_memdel((void **)&c_out->str);
 	c_out->str = new_str;
 	c_out->len = min_width;
 	return (true);

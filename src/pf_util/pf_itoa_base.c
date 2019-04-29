@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 13:42:11 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:48:35 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:24:48 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char				*pf_itoa_base(int64_t value, int8_t base,
 	if (c_out->is_negative)
 		i--;
 	c_out->len = i;
-	to_return = TAKE_MULTI(char, i + 1, "pf_itoa_base");
+	to_return = ft_strnew(i);
 	if (to_return == NULL)
 		return (NULL);
 	i--;

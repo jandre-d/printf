@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:47:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:21:46 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:22:40 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	pf_c(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 	}
 	else
 	{
-		c_out->str = TAKE_MULTI(char, 2, "pf_c");
+		c_out->str = ft_strnew(1);
 		if (c_out->str == NULL)
 			return (false);
 		c_out->len = 1;

@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/12 14:09:36 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:49:03 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:25:12 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char			*pf_uitoa_base(uint64_t value, int8_t base,
 	character_set = lowercase ? "0123456789abcdef" : "0123456789ABCDEF";
 	i = pf_uintlen(value, base);
 	c_out->len = i;
-	to_return = TAKE_MULTI(char, i + 1, "ft_itoa_base");
+	to_return = ft_strnew(i);
 	if (to_return == NULL)
 		return (NULL);
 	i--;
