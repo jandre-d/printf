@@ -6,13 +6,13 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:35:06 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 13:28:44 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 16:04:11 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pf_printf.h"
 
-bool	set_null_text(t_conversion_out *c_out)
+static bool	set_null_text(t_conversion_out *c_out)
 {
 	char *nul;
 
@@ -25,7 +25,7 @@ bool	set_null_text(t_conversion_out *c_out)
 	return (true);
 }
 
-bool	for_str(t_conversion_out *c_out, va_list *argl, int precision)
+static bool	for_str(t_conversion_out *c_out, va_list *argl, int precision)
 {
 	char *str;
 
@@ -43,7 +43,7 @@ bool	for_str(t_conversion_out *c_out, va_list *argl, int precision)
 	return (true);
 }
 
-bool	for_wstr(t_conversion_out *c_out, va_list *argl, int precision)
+static bool	for_wstr(t_conversion_out *c_out, va_list *argl, int precision)
 {
 	int *wstr;
 
@@ -56,7 +56,7 @@ bool	for_wstr(t_conversion_out *c_out, va_list *argl, int precision)
 	return (true);
 }
 
-bool	pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
+bool		pf_s(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
 	if (c_in->precision_default == false && c_in->precision == 0)
 	{

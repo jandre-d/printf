@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 11:38:33 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 14:15:39 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 15:51:17 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ static inline bool		set_flag_and_mod(char **str, t_conversion_in *c_in)
 			(**str == '.' && set_nbr_param(str, c_in)) ||
 			((**str >= '0' && **str <= '9') && set_nbr_param(str, c_in)));
 	else
-		return (double_char_flag_result);
+		return (double_char_flag_result != false);
 }
 
 /*

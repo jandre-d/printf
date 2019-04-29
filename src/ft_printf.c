@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 14:35:42 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 16:18:26 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,10 @@ static inline bool		loop(char *str, va_list *argl, t_pf_output *output)
 		str += till_instruction;
 		if (*str == '\0')
 			return (true);
-		if (read_instruction(&str, &c_in))
-		{
-			if (start_instruction(&c_in, &c_out, argl, output) == false)
-				return (false);
-		}
-		else
-			continue;
+		if (read_instruction(&str, &c_in) == false)
+			return (false);
+		if (start_instruction(&c_in, &c_out, argl, output) == false)
+			return (false);
 		if (*str == '\0')
 			return (true);
 		str++;

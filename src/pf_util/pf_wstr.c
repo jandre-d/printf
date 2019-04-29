@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 13:56:47 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/27 17:15:49 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 15:31:12 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ char				*pf_wstr_to_str(int *wstr, int *size, int precision)
 	{
 		add = pf_wchar_to_str(wstr[i], &add_size);
 		pf_memcpy(str + *size, add, add_size);
+		GIVE(add, "pf_wstr_to_str");
 		*size += add_size;
 		i++;
 	}
