@@ -6,7 +6,7 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/18 17:19:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/29 17:46:11 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/04/29 19:30:45 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ ALL_C_FILES 	= \
 	$(addprefix src/pf_util/, $(SRC_UTIL:=.c))	\
 	$(addprefix src/, $(SRC:=.c))
 
+LIBFT_DIR = libft/
 INC_DIR = includes/
 
 all: $(NAME)
@@ -31,8 +32,8 @@ all: $(NAME)
 re: fclean all
 
 $(NAME):
-	cd libft && make
-	cp libft/libft.a $(NAME)
+	cd $(LIBFT_DIR) && make
+	cp $(LIBFT_DIR)/libft.a $(NAME)
 	gcc -Wall -Werror -Wextra -c $(ALL_C_FILES) -I $(INC_DIR) 
 	ar -r $(NAME) $(ALL_O_FILES)
 	ranlib $(NAME)
