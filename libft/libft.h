@@ -6,16 +6,16 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/09 10:01:59 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/06 12:32:57 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:04:17 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <string.h>
-# define TAKE(x, name) ((x*)ft_memalloc(sizeof(x)))
-# define TAKE_MULTI(x, times, name) ((x*)(ft_memalloc(sizeof(x) * times)))
-# define GIVE(x, name) ft_memdel((void **)&(x))
+# define TAKE(x, name) ((x*)ft_memallocx(sizeof(x), name))
+# define TAKE_MULTI(x, times, name) ((x*)(ft_memallocx(sizeof(x) * times, name)))
+# define GIVE(x, name) ft_memdelx((void **)&(x), name)
 # define ABS(x) ((x) < 0 ? -(x) : x)
 # define TRUE 1
 # define FALSE 0
@@ -61,8 +61,10 @@ int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-void				*ft_memalloc(size_t size);
-void				ft_memdel(void **ap);
+void	*ft_memallocx(size_t size, char *name);
+void	ft_memdelx(void **ap, char *name);
+void	*ft_memalloc(size_t size);
+void	ft_memdel(void **ap);
 char				*ft_strnew(size_t size);
 void				ft_strdel(char **as);
 void				ft_strclr(char *as);

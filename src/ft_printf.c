@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/01 16:47:38 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 16:18:26 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/04/29 17:18:57 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ int						ft_printf(const char *format, ...)
 	output.str_useage = 0;
 	va_start(argl, format);
 	if (loop((char *)format, &argl, &output) == false)
+	{
+		GIVE(output.str, "ft_printf");
 		return (-1);
+	}
 	va_end(argl);
 	write(1, output.str, output.str_useage);
 	GIVE(output.str, "ft_printf");
