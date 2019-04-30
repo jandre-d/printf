@@ -6,7 +6,7 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/18 17:19:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/30 12:40:37 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/04/30 15:40:26 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC_UTIL		= pf_10_power_n pf_intlen pf_itoa_base pf_ldtoa pf_memcpy \
 
 ALL_O_FILES 	= $(SRC_CONVERTIONS:=.o) $(SRC:=.o) $(SRC_UTIL:=.o)
 ALL_C_FILES 	= \
-	$(addprefix src/pf_convertions/, $(SRC_CONVERTIONS:=.c)) \
+	$(addprefix src/pf_conversions/, $(SRC_CONVERTIONS:=.c)) \
 	$(addprefix src/pf_util/, $(SRC_UTIL:=.c))	\
 	$(addprefix src/, $(SRC:=.c))
 
