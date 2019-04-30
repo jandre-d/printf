@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   percent.c                                          :+:    :+:            */
+/*   pf_r.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/04/17 20:47:24 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/29 19:48:31 by jandre-d      ########   odam.nl         */
+/*   Created: 2019/04/27 20:02:52 by jandre-d       #+#    #+#                */
+/*   Updated: 2019/04/30 12:39:45 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-bool	pf_percent(t_conversion_in *c_in, t_conversion_out *c_out)
+bool	pf_r(t_conversion_in *c_in, t_conversion_out *c_out, va_list *argl)
 {
-	c_out->len = 1;
-	c_out->str = ft_strnew(1);
-	if (c_out->str == NULL)
-		return (false);
-	c_out->str[0] = '%';
-	return (pf_padding_general(c_in, c_out, false));
+	return (pf_s(c_in, c_out, argl));
 }
