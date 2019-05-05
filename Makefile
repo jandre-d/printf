@@ -6,7 +6,7 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/04/18 17:19:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/30 15:40:26 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/05/05 18:23:10 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,6 @@ INC_DIR = includes/
 
 all: $(NAME)
 
-re: fclean all
-
 $(NAME):
 	cd $(LIBFT_DIR) && make
 	cp $(LIBFT_DIR)/libft.a $(NAME)
@@ -45,3 +43,5 @@ clean:
 fclean: clean
 	cd libft && make fclean
 	rm -f $(NAME)
+
+re: fclean all

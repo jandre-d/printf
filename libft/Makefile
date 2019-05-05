@@ -6,7 +6,7 @@
 #    By: jandre-d <jandre-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/09 10:02:55 by jandre-d       #+#    #+#                 #
-#    Updated: 2019/04/25 16:39:48 by jandre-d      ########   odam.nl          #
+#    Updated: 2019/05/05 18:21:49 by jandre-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ FILES = ft_isupper ft_islower \
 	ft_striter ft_striteri ft_strmap ft_strmapi \
 	ft_strequ ft_strnequ ft_strsub ft_strjoin \
 	ft_strtrim ft_strsplit ft_itoa ft_putchar ft_putstr \
-	ft_putendl ft_putnbr ft_putchar_fd ft_putstr_fd ft_putendl_fd ft_putnbr_fd \
-	ft_lstnew ft_lstdelone ft_lstdel \
-	ft_lstadd ft_lstiter ft_lstmap \
-	ft_strrev ft_islower ft_isupper ft_strupper ft_strlower ft_strislower ft_strisupper ft_map
+	ft_putendl ft_putnbr ft_putchar_fd ft_putstr_fd ft_putendl_fd \
+	ft_putnbr_fd ft_lstnew ft_lstdelone ft_lstdel ft_lstadd ft_lstiter \
+	ft_lstmap ft_strrev ft_islower ft_isupper ft_strupper ft_strlower \
+	ft_strislower ft_strisupper ft_map
 
 $(NAME):
 	gcc -c -Wall -Wextra -Werror $(FILES:=.c)

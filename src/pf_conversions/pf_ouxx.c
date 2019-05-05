@@ -6,7 +6,7 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 15:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/30 12:40:01 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/05/05 18:23:59 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ static inline void	set_base(t_conversion_in *c_in, int8_t *base)
 static inline void	set_value(t_conversion_in *c_in, uint64_t *value,
 	va_list *argl)
 {
-	if ((c_in->mod_hh && ((*value = (unsigned char)va_arg(*argl, unsigned int))
+	if (
+	(c_in->mod_hh && ((*value = (unsigned char)va_arg(*argl, unsigned int))
 		|| 1)) ||
 	(c_in->mod_h && ((*value = (unsigned short)va_arg(*argl, unsigned int))
 		|| 1)) ||
