@@ -6,11 +6,18 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/25 15:07:43 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/05/05 18:23:59 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/05/08 16:45:06 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+**	bug:
+**	ft_printf("%#08x", 42);
+**	00000x2a
+**	0x00002a%
+*/
 
 static inline bool	flags_and_mods(t_conversion_in *c_in,
 	t_conversion_out *c_out)
@@ -22,7 +29,8 @@ static inline bool	flags_and_mods(t_conversion_in *c_in,
 	if (c_in->flag_0)
 		if (pf_padding_general(c_in, c_out, false) == false)
 			return (false);
-	if (c_in->flag_plus && c_in->conversion_type != 'o')
+	if (c_in->flag_plus && c_in->conversion_type != 'o' &&
+		c_in->conversion_type != 'u')
 	{
 		if (pf_prepend_to_c_out(c_out, "+", 1) == false)
 			return (false);

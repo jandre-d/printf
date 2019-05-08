@@ -6,11 +6,16 @@
 /*   By: jandre-d <jandre-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/17 20:47:14 by jandre-d       #+#    #+#                */
-/*   Updated: 2019/04/30 12:40:06 by jandre-d      ########   odam.nl         */
+/*   Updated: 2019/05/08 16:44:38 by jandre-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** does not work with high precision values becase i cast the decimal part \
+** to a int64 (it will overflow)
+*/
 
 static inline bool	flags_and_mods(t_conversion_in *c_in,
 	t_conversion_out *c_out)
